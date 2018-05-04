@@ -904,7 +904,7 @@
                     downloadTitle: '下载',
                     zoomIcon: '<i class="glyphicon glyphicon-zoom-in"></i>',
                     zoomClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
-                    zoomTitle: 'View Details',
+                    zoomTitle: '查看',
                     dragIcon: '<i class="glyphicon glyphicon-move"></i>',
                     dragClass: 'text-info',
                     dragTitle: 'Move / Rearrange',
@@ -913,10 +913,10 @@
                     indicatorSuccess: '<i class="glyphicon glyphicon-ok-sign text-success"></i>',
                     indicatorError: '<i class="glyphicon glyphicon-exclamation-sign text-danger"></i>',
                     indicatorLoading: '<i class="glyphicon glyphicon-hourglass text-muted"></i>',
-                    indicatorNewTitle: 'Not uploaded yet',
-                    indicatorSuccessTitle: 'Uploaded',
-                    indicatorErrorTitle: 'Upload Error',
-                    indicatorLoadingTitle: 'Uploading ...'
+                    indicatorNewTitle: '未上传',
+                    indicatorSuccessTitle: '已上传',
+                    indicatorErrorTitle: '上传出错',
+                    indicatorLoadingTitle: '上传中 ...'
                 }
             };
             $.each(self.defaults, function (key, setting) {
@@ -4383,7 +4383,7 @@
         uploadTitle: '上传选择文件',
         msgNo: 'No',
         msgNoFilesSelected: '未选中文件',
-        msgCancelled: 'Cancelled',
+        msgCancelled: '上传中断',
         msgPlaceholder: '选择文件...',
         msgZoomModalHeading: '预览详情',
         msgFileRequired: 'You must select a file to upload.',
@@ -4412,10 +4412,10 @@
         msgUploadAborted: 'The file upload was aborted',
         msgUploadThreshold: 'Processing...',
         msgUploadBegin: 'Initializing...',
-        msgUploadEnd: 'Done',
+        msgUploadEnd: '上传完成',
         msgUploadEmpty: '请选择需要上传的文件',
         msgUploadError: 'Error',
-        msgValidationError: 'Validation Error',
+        msgValidationError: '校验失败',
         msgLoading: 'Loading file {index} of {files} &hellip;',
         msgProgress: 'Loading file {index} of {files} - {name} - {percent}% completed.',
         msgSelected: '{n} {files} selected',

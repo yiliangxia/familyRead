@@ -18,7 +18,7 @@
          >
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.familyRead" />
-	<mvc:resources location="/assets/image/" mapping="/assets/image/**"></mvc:resources>  
+	<mvc:resources location="/assets/img/" mapping="/assets/img/**"></mvc:resources>  
     <mvc:resources location="/assets/fonts/" mapping="/assets/fonts/**"></mvc:resources>
     <mvc:resources location="/assets/bootstrap/css/" mapping="/assets/bootstrap/css/**"></mvc:resources>
     <mvc:resources location="/assets/css/" mapping="/assets/css/**"></mvc:resources>  
