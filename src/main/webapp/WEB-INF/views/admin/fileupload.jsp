@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					uploadUrl : "${ctx}/upload",
 					autoReplace : true,
 					maxFileCount : 5,
-					allowedFileExtensions : [ "jpg", "png", "gif","pdf","mp3","xlsx" ]
+					allowedFileExtensions : [ "jpg", "png", "gif","pdf","mp3","xlsx","rmvb","wmv","avi" ]
 				});
 				
 				$("#fileId").on('filebatchuploadsuccess', function(event, data, previewId, index) {

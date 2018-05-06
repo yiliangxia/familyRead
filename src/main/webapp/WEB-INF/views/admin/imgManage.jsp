@@ -36,40 +36,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <tr>
                                             <th>序号</th>
                                             <th>文件名字</th>
-                                            <th>所属绘本</th>
-                                            <th>上传时间</th>
+                                            <th>创建者</th>
+                                            <th>所属组</th>
+                                             <th>所属绘本</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                            <c:choose>
+								<c:when test="${empty page.result }">
+										<tr>
+											<td colspan="5">请上传文件进行操作！</td>
+										</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="imgs" items="${page.result }" varStatus="index">
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td>${index.index+1}</td>
+                                            <td>${imgs.fileName }</td>
+                                            <td>${imgs.createBy }</td>
+                                            <td>${imgs.groupName }</td>
+                                            <td>${imgs.bookName }</td>
+                                            <td>
+                                            	<c:choose>
+													<c:when test="${empty user.groupName}">
+														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
+													</c:when>
+													<c:otherwise>
+														绑定绘本
+													</c:otherwise>
+												</c:choose>
+                                            
+                                            </td>
                                         </tr>
-                                        <tr class="info">
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                        <tr class="info">
-                                            <td>4</td>
-                                            <td>John</td>
-                                            <td>Smith</td>
-                                            <td>@jsmith</td>
-                                            <td>@jsmith</td>
-                                        </tr>
+                                    </c:forEach>
+								</c:otherwise>
+							</c:choose>
                                     </tbody>
                                 </table>
                             </div>
@@ -77,6 +79,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                    <div class="Paging">
+						<div class="pag">
+							<tags:imgManage page="${page}" paginationSize="${page.pageSize}" />
+						</div>
+					</div>
                     <!-- /.panel -->
                 </div>
         </div>
@@ -87,6 +94,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </body>
 <script type="text/javascript">
+//加载用户列表页
+function loadImgList(pageNo, name) {
+	if (pageNo == null || pageNo == "") {
+		pageNo = 1;
+	}
+	var pageSize = $("#pageSize").val();
+	$.ajax({
+		type : "post",
+		url : "${ctx}/toImgManage",
+		data : {
+			pageNo : pageNo,
+			pageSize : pageSize
+		},
+		async : false,
+		dataType : "html",
+		success : function(msg) {
+			$("#right").empty();
+			$("#right").append(msg);
+			support();// 设置翻页按钮底部居中
+		}
+	});
+
+}
+
+function support() {
+	var oDiv = $(".supp")[0];
+	var oTab = $("#list").height();
+	var oHeight = $(window).height() - 375;
+	oDiv.style.width = "100%";
+	if (oTab <= oHeight) {
+		oDiv.style.height = oHeight - oTab + 'px';
+	} else {
+		oDiv.style.height = 0;
+	}
+	var oPag = $(".Paging");
+	var aPli = $(".Paging a");
+	oPag.css('width', aPli.length * aPli[0].offsetWidth + 'px');
+}
 </script>
 </html>
 

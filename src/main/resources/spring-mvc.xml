@@ -7,7 +7,8 @@
  xmlns:p="http://www.springframework.org/schema/p"
  xmlns:aop="http://www.springframework.org/schema/aop"
  xmlns:task="http://www.springframework.org/schema/task"  
- xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+ xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+ 		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -24,6 +25,18 @@
     <mvc:resources location="/assets/css/" mapping="/assets/css/**"></mvc:resources>  
     <mvc:resources location="/assets/js/" mapping="/assets/js/**"></mvc:resources>  
 	<mvc:annotation-driven />  
+	
+	<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*" />
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <mvc:exclude-mapping path="/assets/*"/>
+            <bean class="com.familyRead.filter.LoginInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
 	<!-- <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
     <task:scheduler id="qbScheduler" pool-size="10"/> -->
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->

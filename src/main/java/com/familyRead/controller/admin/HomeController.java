@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.familyRead.model.Customer;
 
 /**
- * 
  * @author xyl
  *
  */
@@ -26,16 +25,14 @@ public class HomeController {
 	DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
 	DecimalFormat df = new DecimalFormat("######0.00");
 	
+	@RequestMapping(value = "/")
+	public String index(Model model) {
+		return "redirect:index";
+	}
+	
 	@RequestMapping(value = "/toLogin", method = RequestMethod.GET)
 	public String toLogin(Model model) {
-		model.addAttribute("title", "登录页");
 		return "admin/login";
-	}
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model,Customer customer) {
-		logger.info(customer.getPhone()+"于"+format1.format(new Date())+"登陆");
-		model.addAttribute("customer", customer);
-		return "redirect:index";
 	}
 	
 	@RequestMapping(value = "/index")

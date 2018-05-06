@@ -7,10 +7,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">妈宝管理后台</a>
+                <a class="navbar-brand" href="javaScript:void(0)"><b>妈宝管理后台</b></a>
+                <span>你好：${sessionScope.customer.userName}</span>
             </div>
             <!-- /.navbar-header -->
-
+			
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

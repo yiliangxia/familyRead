@@ -29,7 +29,7 @@
                                     <input class="form-control" placeholder="电话" name="phone" type="phone" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="密码" name="passWord" type="passWord" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
