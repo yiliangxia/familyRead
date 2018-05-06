@@ -23,7 +23,8 @@
     <mvc:resources location="/assets/fonts/" mapping="/assets/fonts/**"></mvc:resources>
     <mvc:resources location="/assets/bootstrap/css/" mapping="/assets/bootstrap/css/**"></mvc:resources>
     <mvc:resources location="/assets/css/" mapping="/assets/css/**"></mvc:resources>  
-    <mvc:resources location="/assets/js/" mapping="/assets/js/**"></mvc:resources>  
+    <mvc:resources location="/assets/js/" mapping="/assets/js/**"></mvc:resources>
+    <mvc:resources location="/assets/upload/" mapping="/assets/upload/**"></mvc:resources>  
 	<mvc:annotation-driven />  
 	
 	<mvc:interceptors>

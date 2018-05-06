@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<c:forEach var="imgs" items="${page.result }" varStatus="index">
                                         <tr>
                                             <td>${index.index+1}</td>
-                                            <td>${imgs.fileName }</td>
+                                            <td><a href="${ctx}/assets/upload/${imgs.fileName }" target="blank">${imgs.fileName }</a></td>
                                             <td>${imgs.createBy }</td>
                                             <td>${imgs.groupName }</td>
                                             <td>${imgs.bookName }</td>

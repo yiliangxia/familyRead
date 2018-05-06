@@ -94,7 +94,7 @@ public class FileManagerController {
         return ("[{\"success\":"+ true +"}]").toString(); 
     }  
 	
-	@RequestMapping(value = "/toImgManage", method = RequestMethod.GET)
+	@RequestMapping(value = "/toImgManage")
 	public String toImgManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
@@ -124,7 +124,7 @@ public class FileManagerController {
 		return "admin/imgManage";
 	}
 	
-	@RequestMapping(value = "/toDocManage", method = RequestMethod.GET)
+	@RequestMapping(value = "/toDocManage")
 	public String toDocManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
@@ -154,7 +154,7 @@ public class FileManagerController {
 		return "admin/docManage";
 	}
 	
-	@RequestMapping(value = "/toVedioManage", method = RequestMethod.GET)
+	@RequestMapping(value = "/toVedioManage")
 	public String toVedioManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
