@@ -33,4 +33,8 @@ public class FileServiceImpl {
 		return fileInfoMapper.insertSelective(fileInfo);
 		
 	}
+
+	public FileInfo selectFileInfoById(FileInfo fileInfo) {
+		return fileInfoMapper.selectOne(fileInfo);
+	}
 }

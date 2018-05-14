@@ -13,6 +13,6 @@ public interface FileInfoMapper extends Mapper<FileInfo>{
 	List<FileInfo> selectFileInfoPage(Page<FileInfo> page);
 
 	int selectFileInfoCount(Page<FileInfo> page);
-	@Override
-	public int insertSelective(FileInfo fileInfo);
+	
+	public int insertFileInfo(FileInfo fileInfo);
 }

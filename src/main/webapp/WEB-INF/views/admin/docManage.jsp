@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
 													</c:when>
 													<c:otherwise>
-														绑定绘本
+														已绑绘本
 													</c:otherwise>
 												</c:choose>
                                             

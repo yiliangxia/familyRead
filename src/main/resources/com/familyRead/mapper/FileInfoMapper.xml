@@ -37,7 +37,7 @@
   	</where>
   </select>
   
-  <insert id="insertSelective" parameterType="com.familyRead.model.FileInfo" >
+  <insert id="insertFileInfo" parameterType="com.familyRead.model.FileInfo" >
     insert into file_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

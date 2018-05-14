@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>管理后台首页</title>
+    <title>绘本管理</title>
 	<%@ include file="../include/tag.jsp"%>
 	<script src="${ctx}/assets/js/morris.min.js"></script>
 	<script src="${ctx}/assets/js/morris-data.js"></script>
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           	图片管理
+                           	绘本管理
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
 													</c:when>
 													<c:otherwise>
-														已绑绘本
+														绑定绘本
 													</c:otherwise>
 												</c:choose>
                                             
@@ -95,14 +95,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script type="text/javascript">
 //加载用户列表页
-function loadImgList(pageNo, name) {
+function loadDocList(pageNo, name) {
 	if (pageNo == null || pageNo == "") {
 		pageNo = 1;
 	}
 	var pageSize = $("#pageSize").val();
 	$.ajax({
 		type : "post",
-		url : "${ctx}/toImgManage",
+		url : "${ctx}/toDocManage",
 		data : {
 			pageNo : pageNo,
 			pageSize : pageSize

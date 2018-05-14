@@ -84,7 +84,7 @@ public class FileManagerController {
         	fileInfo.setFileType(3);
         }
         fileInfo.setFileName(name);
-        fileInfo.setCreateTime(new Date());
+        fileInfo.setCreateTime(new Date().toString());
         fileInfo.setCreateBy(customer.getUserName());
         try {
 			fileService.insertSelective(fileInfo);
@@ -183,5 +183,15 @@ public class FileManagerController {
 		model.addAttribute("page", page);
 		return "admin/vedioManage";
 	}
+	
+	
+	@RequestMapping(value = "/toBookManage")
+	public String toBookManage(Model model,FileInfo fileInfo) {
+		fileInfo = fileService.selectFileInfoById(fileInfo);
+		model.addAttribute("fileInfo", fileInfo);
+		return "admin/bookManage";
+	}
+	
+	
 
 }

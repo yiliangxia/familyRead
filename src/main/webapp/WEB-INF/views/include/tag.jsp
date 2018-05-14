@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<input id="ctx" type="hidden" value="${ctx}"/>
 <link href="${ctx}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctx}/assets/bootstrap/css/font-awesome.min.css" rel="stylesheet">
 <link href="${ctx}/assets/bootstrap/css/metisMenu.min.css" rel="stylesheet">
@@ -15,3 +16,4 @@
 <script src="${ctx}/assets/js/metisMenu.min.js"></script>
 <script src="${ctx}/assets/js/sb-admin-2.js"></script>
 <script src="${ctx}/assets/js/raphael.min.js"></script>
+<script src="${ctx}/assets/js/manage.js"></script>
