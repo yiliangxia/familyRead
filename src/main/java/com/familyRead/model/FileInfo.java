@@ -1,6 +1,5 @@
 package com.familyRead.model;
 
-import java.util.Date;
 
 public class FileInfo {
     private Long id;

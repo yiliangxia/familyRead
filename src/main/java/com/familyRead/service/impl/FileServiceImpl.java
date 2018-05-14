@@ -30,6 +30,13 @@ public class FileServiceImpl {
 	}
 
 	public int insertSelective(FileInfo fileInfo) {
+		int flag = -1;
+		FileInfo fi = new FileInfo();
+		fi.setFileName(fileInfo.getFileName());
+		flag = fileInfoMapper.delete(fi);
+		if(flag<0){
+			return -1;
+		}
 		return fileInfoMapper.insertSelective(fileInfo);
 		
 	}

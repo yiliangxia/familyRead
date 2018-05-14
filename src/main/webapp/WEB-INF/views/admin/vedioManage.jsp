@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Navigation -->
 		<%@ include file="../include/nav.jsp"%>
         <div id="page-wrapper">
-        	<div>
+        	<div id="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            	音频管理
