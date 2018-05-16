@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -106,7 +107,7 @@ public class FileManagerController {
     }  
 	
 	@RequestMapping(value = "/toImgManage")
-	public String toImgManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toImgManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){
@@ -154,7 +155,7 @@ public class FileManagerController {
 	}
 	
 	@RequestMapping(value = "/toDocManage")
-	public String toDocManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toDocManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){
@@ -201,7 +202,7 @@ public class FileManagerController {
 	}
 	
 	@RequestMapping(value = "/toVedioManage")
-	public String toVedioManage(Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toVedioManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){

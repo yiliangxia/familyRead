@@ -1,21 +1,34 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache">
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'MyJsp.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-
-    <title>管理后台首页</title>
-	<%@ include file="../include/tag.jsp"%>
-</head>
-<body>
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script src="${ctx}/assets/js/jquery.min.js"></script>
+<script src="${ctx}/assets/js/index.js"></script>
+  </head>
+  
+  <body>
     <div>
 
         <!-- Navigation -->
@@ -92,10 +105,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
-
-</body>
-<script type="text/javascript">
+  </body>
+  <script type="text/javascript">
 //加载用户列表页
 function loadImgList(pageNo, pageSize) {
 	var timestamp = (new Date()).valueOf();  
@@ -107,7 +118,7 @@ function loadImgList(pageNo, pageSize) {
 		pageSize = $("#pageSize").val();
 	}
 	$.ajax({
-		type : "get",
+		type : "post",
 		url : "${ctx}/toImgManage",
 		data : {
 			pageNo : pageNo,
@@ -128,4 +139,3 @@ $(function() {
 });
 </script>
 </html>
-

@@ -1,3 +1,105 @@
+
+/*头部*/
+body{}
+.header{ width:100%; height:45px; background:url(../images/001.gif) repeat-x; padding-top:6px; color:#ffffff;}
+.logo{ width:84px; height:37px; background:url(../images/logo001.png) no-repeat 0 0; margin-left:27px; float: left;}
+.header ul{float: right; margin-right: 27px; }
+.header ul li{float: left; line-height:35px;}
+.header ul li a{color:#ffffff; font-size: 13px; padding: 0 5px; vertical-align: middle; vertical-align:top\9;}
+.header ul li a:hover{cursor: pointer;}
+.header ul li .out{padding-left: 20px;}
+.header ul li .out:hover{color:#fd9502;}
+
+/*中间左边*/
+.content{ width:100%; /* background: #ffffff; */}
+.leftly{ width:240px; height:100%; border-right:1px solid #ccc; float:left; color:#444; background: #fafafa;}
+.leftly h3{ width:100%; height:49px; background:url(../images/002.gif) repeat-x; line-height:49px; border-bottom:1px solid #ccc; position:relative; font-weight:normal; cursor:pointer;}
+.leftly ul{ border-bottom:1px solid #ccc; height:0; overflow:hidden;}
+.leftly h3 a{ padding-left:38px; text-decoration:none;}
+.leftly li{ width:100%; height:42px; line-height:42px; cursor:pointer; overflow:hidden;}
+.leftly .active{ width:100%; height:42px; background:#ddd; position:relative;}
+.leftly .active1{ width:100%; height:42px; background:#d0d0d1; position:relative;}
+.leftly .active i,.leftly .active1 i{ width:4px; height:42px; background:#fd9502; position:absolute; left:0; top:0;}
+.leftly li span{ width:0; height:0; line-height:0; border:5px solid transparent;_border:12px solid #fff; float:left; border-left-color:#666; float:left; margin:15px 0 0 14px;}
+.leftly li a{ text-decoration:none;}
+.leftly h3 span{ position:absolute; top:15px; left:15px;}
+.onely{ width:15px; height:19px; background:url(../images/002.png) no-repeat 0 -13px;}
+.towly{ width:20px; height:18px; background:url(../images/002.png) no-repeat 0 -33px;}
+.threely{ width:20px; height:18px; background:url(../images/002.png) no-repeat -25px -15px;}
+.fourly{ width:20px; height:18px; background:url(../images/002.png) no-repeat -25px -33px;}
+.fively{ width:20px; height:18px; background:url(../images/002.png) no-repeat -45px -13px;}
+
+.leftly h3 b{ position:absolute; width:13px; height:10px; right:15px; top:20px;}
+.uply{ background:url(../images/002.png) no-repeat -16px 0;}
+.downly{ background:url(../images/002.png) no-repeat 0 0;}
+
+
+/*右边*/
+.rightly{ overflow-x:auto; background: #ffffff; position:relative;}
+.title{background: #fafafa; height: 48px; line-height: 48px; border: 1px solid #ccc; font-size: 16px; text-align: center; border-left:none; border-right:none;}
+
+.error{margin: 120px auto; text-align: center; width: 670px; height: 322px;}
+.error img{float: left; width: 374px; height: 322px;}
+.error p{display: inline-block; width: 270px; float: right; color: #404247; font-family: 微软雅黑; font-size: 12px; text-align: left; line-height: 30px; padding-top: 90px;}
+.error p span{color: #000000; font-size: 24px;}
+
+.picly{min-width:240px; padding:10px 0 0 15px; float:left; background: #fafafa; border-right:1px solid #ccc;}
+/*  .ov{overflow-y: auto; max-height:730px;}  */
+.picly a{ text-decoration:none;}
+
+.pi{min-width:240px; padding:10px 0 0 15px; float:left; background: #fafafa; border-right:1px solid #ccc;}
+.pi a{ text-decoration:none;}
+
+em{ font-weight:normal;}
+.framely_big,.framely_in,.framely_small{ border:1px solid #d0d0d0; border-radius:4px; padding:5px 0px 5px 30px; position:relative; cursor:pointer; background: #fefefe;}
+.framely_big,.framely_in{ margin-top:10px;}
+.framely_big span{ width:15px; height:12px; background:url(../images/002.png) no-repeat -65px 0; top:8px; left:9px; position:absolute;}
+.framely_in b,.framely_small b{ position:absolute; width:24px; height:1px; background:#d0d0d0; top:14px; left:-25px;}
+.framely_in span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -47px 0; top:8px; left:9px;}
+.framely_in .active{ background:url(../images/002.png) no-repeat -32px 0;}
+.framely_small{ margin-bottom:10px;}
+.big_down{min-width:176px; border-left:1px solid #d0d0d0; padding-left:24px; padding-top:10px; margin-left:4px;}
+.in_down{min-width:122px; border-left:1px solid #d0d0d0;padding-left:24px; padding-top:10px; margin-left:4px;}
+.framely_small span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -83px 0; top:8px; left:9px;}
+.framely_small em{ width:1px; height:14px; position:absolute; background:#fff; top:15px; left:-26px;}
+.framely_in em{ width:1px; position:absolute; background:#fff; top:15px; left:-26px; height:15px;}
+.picly .hide{ display:none;}
+.picly .show{ display:block;}
+.pi .hide{ display:none;}
+.pi .show{ display:block;}
+.addly{ width:73px; height:28px; border-radius:4px; background:#453a7e; line-height:28px; color:#fff; border:0; margin:0 3px 10px 3px;}
+.add{ width:87px; height:28px; line-height:28px; color:#fff; background:#453a7e; border:0; margin-left:358px; border-radius: 3px;}
+.btnly{ margin:10px 0;}
+.surface{ overflow-x:auto; padding-left:35px; margin-top:26px; overflow-y:hidden;}
+.picly .pitchon,.picly .big_down .pitchon,.picly .big_down .in_down .pitchon{ background:#453a7e; border:1px solid #453a7e;}
+.picly .pitchon a,.picly .big_down .pitchon a,.picly .big_down .in_down .pitchon a{ color:#fff;}
+.picly .pitchon .active,.picly .pitchon span{ width:15px; height:12px; background:url(../images/002.png) no-repeat -65px -85px; top:8px; left:9px; position:absolute;}
+.picly .big_down .pitchon span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -47px -85px; top:8px; left:9px;}
+.picly .big_down .pitchon .active{ background:url(../images/002.png) no-repeat -32px -85px;}
+.picly .big_down .in_down .pitchon span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -83px -86px; top:8px; left:9px;}
+
+.pi .pitchon,.pi .big_down .pitchon,.pi .big_down .in_down .pitchon{ background:#453a7e; border:1px solid #453a7e;}
+.pi .pitchon a,.picly .big_down .pitchon a,.pi .big_down .in_down .pitchon a{ color:#fff;}
+.pi .pitchon .active,.picly .pitchon span{ width:15px; height:12px; background:url(../images/002.png) no-repeat -65px -85px; top:8px; left:9px; position:absolute;}
+.pi .big_down .pitchon span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -47px -85px; top:8px; left:9px;}
+.pi .big_down .pitchon .active{ background:url(../images/002.png) no-repeat -32px -85px;}
+.pi .big_down .in_down .pitchon span{ position:absolute; width:12px; height:12px; background:url(../images/002.png) no-repeat -83px -86px; top:8px; left:9px;}
+
+
+/*尾部*/
+.footer{ width:100%; border-top:1px solid #ccc; text-align:center;position: fixed; bottom: 14px;}
+.foot{ margin:0 auto; width:818px; margin-top: 15px;}
+.foot a{ float:left; margin-right:29px; color:#666; text-decoration:none;}
+
+
+/*下拉框美化*/
+.selely{ height:27px; padding:0px 36px 0px 9px; display:inline-block; border:1px solid #ccc; position:relative; border-radius: 3px;}
+.selely b{ position:absolute; width:17px; height:17px; background:url(../images/002.png) no-repeat 0 -55px; top:5px; right:5px; cursor:pointer;}
+.selely p{ line-height:27px; cursor:pointer;}
+.selely ul{ display:none; position:absolute; top:27px; left:-1px; width:100%; background:#fff; border:1px solid #ccc; max-height:108px; overflow-y:auto; z-index:20;}
+.selely li{ line-height:27px; cursor:pointer; padding-left:9px;}
+.selely .show{ background:#d9d7d8; color:#463b7f;}
+
 /*分页*/
 .Paging{width:450px; height: 35px; line-height: 35px; margin: 0 auto; text-align: center;}
 .Paging .pag{height: 35px; line-height: 35px; text-align: center;  width: 450px;}
@@ -8,3 +110,29 @@
 .Paging .pag a.f{ border-radius:3px 0 0 3px;}
 .Paging .pag a:last-child{border-right:1px solid #dddddd; border-radius:0 3px 3px 0;}
 .Paging .pag .pn{float: left; height: 35px; line-height: 35px; padding: 0 14px; font-size: 14px; border:1px solid #dddddd; border-right: none; }
+
+/*整体*/
+.bodyly{width:100%;height:100%;background:#463d74;background:-webkit-radial-gradient(#50467e, #463d74);}
+.leftly1{ width:240px; height:100%; float:left; color:#444; background:url(../images/img.png) no-repeat 61px bottom;}
+.leftly1 h3{ width:100%; height:49px; background:url(../images/002.gif) repeat-x; line-height:49px; border-bottom:1px solid #ccc; position:relative; font-weight:normal; cursor:pointer;}
+.leftly1 ul{ border-bottom:1px solid #ccc; height:0; overflow:hidden; background: #fafafa;}
+.leftly1 h3 a{ padding-left:38px; text-decoration:none;}
+.leftly1 li{ width:100%; height:42px; line-height:42px; cursor:pointer; overflow:hidden;}
+.leftly1 .active{ width:100%; height:42px; background:#ddd; position:relative;}
+.leftly1 .active1{ width:100%; height:42px; background:#d0d0d1; position:relative;}
+.leftly1 .active i,.leftly .active1 i{ width:4px; height:42px; background:#fd9502; position:absolute; left:0; top:0;}
+.leftly1 li span{ width:0; height:0; line-height:0; border:5px solid transparent;_border:12px solid #fff; float:left; border-left-color:#666; float:left; margin:15px 0 0 14px;}
+.leftly1 li a{ text-decoration:none;}
+.leftly1 h3 span{ position:absolute; top:15px; left:15px;}
+.leftly1 h3 b{ position:absolute; width:13px; height:10px; right:15px; top:20px;}
+.right_fra{ background:#1d1254; background:-webkit-radial-gradient(#3d3275,#1d1254); min-width:10px; overflow:auto; position:relative;}
+.imgly{ display:block; position:absolute; top:0; left:0; width:100%; height:100%; background:url(../images/logo002.png) no-repeat center center; cursor:default}
+.right_in{ position:absolute; top:0; left:0; width:100%; height:100%; background:url(../images/img.png) repeat-x -177px bottom;}
+
+body{}
+.showtree{position:absolute;top:15%;left:15%;background:#fff;display:none;border:3px solid #ccc;border-radius:5px;border:3px solid #8c8c8c;box-shadow:1px 3px 10px 6px #dedddd;}
+.showtree .show_top{ width:100%; height:28px; background:url(../images/001.gif) repeat-x;text-indent:20px;font-size:12px;font-weight:bold;color:#fff;line-height:28px;position:absolute;top:0;left:0;}
+.showtree_top{width:700px;height:420px;overflow:auto;margin-top:30px;}
+.showtree_bot{position:relative;margin-left:10px;}
+.showtree .addly{ margin-top:6px;}
+.show_bot{width:100%; text-align:center; background:#efefef; height:40px;}
