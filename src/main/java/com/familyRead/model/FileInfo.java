@@ -1,5 +1,6 @@
 package com.familyRead.model;
 
+import java.util.Date;
 
 public class FileInfo {
     private Long id;
@@ -8,21 +9,31 @@ public class FileInfo {
 
     private String filePath;
 
-    private String updateTime;
+    private Date updateTime;
 
     private String createBy;
 
     private String updateBy;
 
-    private String createTime;
+    private Date createTime;
 
     private Integer fileType;
-    
-    private String groupName;
-    
-    private String bookName;
 
-    public Long getId() {
+    private String groupName;
+
+    private String bookName;
+    
+    private String groupId;
+
+    
+	public FileInfo() {
+	}
+	
+	public FileInfo(Integer fileType) {
+		this.fileType = fileType;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -35,7 +46,7 @@ public class FileInfo {
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName == null ? null : fileName;
+        this.fileName = fileName == null ? null : fileName.trim();
     }
 
     public String getFilePath() {
@@ -43,7 +54,15 @@ public class FileInfo {
     }
 
     public void setFilePath(String filePath) {
-        this.filePath = filePath == null ? null : filePath;
+        this.filePath = filePath == null ? null : filePath.trim();
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getCreateBy() {
@@ -51,7 +70,7 @@ public class FileInfo {
     }
 
     public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy;
+        this.createBy = createBy == null ? null : createBy.trim();
     }
 
     public String getUpdateBy() {
@@ -59,9 +78,16 @@ public class FileInfo {
     }
 
     public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy == null ? null : updateBy;
+        this.updateBy = updateBy == null ? null : updateBy.trim();
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public Integer getFileType() {
         return fileType;
@@ -71,37 +97,28 @@ public class FileInfo {
         this.fileType = fileType;
     }
 
+    public String getGroupName() {
+        return groupName;
+    }
 
-	public String getUpdateTime() {
-		return updateTime;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName == null ? null : groupName.trim();
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName == null ? null : bookName.trim();
+    }
+
+	public String getGroupId() {
+		return groupId;
 	}
 
-	public void setUpdateTime(String updateTime) {
-		this.updateTime = updateTime;
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
 	}
-
-	public String getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
-	}
-
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
-
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-	
+    
 }

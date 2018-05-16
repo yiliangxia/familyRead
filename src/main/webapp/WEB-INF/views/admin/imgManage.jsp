@@ -8,9 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="pragma" content="no-cache"> 
+	<meta http-equiv="cache-control" content="no-cache"> 
+	<meta http-equiv="expires" content="0">   
 
     <title>管理后台首页</title>
 	<%@ include file="../include/tag.jsp"%>
@@ -77,16 +77,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <!-- /.table-responsive -->
                         </div>
+                        
                         <!-- /.panel-body -->
                     </div>
-                    <div class="Paging">
-						<div class="pag">
-							<tags:imgManage page="${page}" paginationSize="${page.pageSize}" />
-						</div>
-					</div>
+                      <div class="supp"></div>
+		                    <div class="Paging" >
+								<div class="pag">
+									<tags:imgManage page="${page}" paginationSize="${page.pageSize}" />
+								</div>
+							</div>
                     <!-- /.panel -->
                 </div>
+                
         </div>
+        
         <!-- /#page-wrapper -->
 
     </div>
@@ -95,11 +99,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script type="text/javascript">
 //加载用户列表页
-function loadImgList(pageNo, name) {
+function loadImgList(pageNo, pageSize) {
 	if (pageNo == null || pageNo == "") {
 		pageNo = 1;
 	}
-	var pageSize = $("#pageSize").val();
+	var pageSize;
+	if(pageSize==undefined){
+		pageSize = $("#pageSize").val();
+	}
 	$.ajax({
 		type : "post",
 		url : "${ctx}/toImgManage",
@@ -110,8 +117,6 @@ function loadImgList(pageNo, name) {
 		async : false,
 		dataType : "html",
 		success : function(msg) {
-			$("#right").empty();
-			$("#right").append(msg);
 			support();// 设置翻页按钮底部居中
 		}
 	});
@@ -120,7 +125,7 @@ function loadImgList(pageNo, name) {
 
 function support() {
 	var oDiv = $(".supp")[0];
-	var oTab = $("#list").height();
+	var oTab = $("#page-wrapper").height();
 	var oHeight = $(window).height() - 375;
 	oDiv.style.width = "100%";
 	if (oTab <= oHeight) {

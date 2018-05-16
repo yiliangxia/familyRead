@@ -1,27 +1,31 @@
 package com.familyRead.model;
 
+import java.util.Date;
+
 public class PictureBook {
     private Long id;
 
     private Long fileImgId;
 
     private Long filePdfId;
-    
-    private Long fileMp3Id;
 
-    private String createTime;
+    private Date createTime;
 
     private String createBy;
 
-    private String updateTime;
+    private Date updateTime;
 
     private String updateBy;
 
     private String bookName;
 
-    private Long groupId;
-    
-    private String desc;
+    private String groupId;
+
+    private Long fileMp3Id;
+
+    private String remark;
+
+    private String groupName;
 
     public Long getId() {
         return id;
@@ -31,12 +35,28 @@ public class PictureBook {
         this.id = id;
     }
 
-    public String getCreateTime() {
+    public Long getFileImgId() {
+        return fileImgId;
+    }
+
+    public void setFileImgId(Long fileImgId) {
+        this.fileImgId = fileImgId;
+    }
+
+    public Long getFilePdfId() {
+        return filePdfId;
+    }
+
+    public void setFilePdfId(Long filePdfId) {
+        this.filePdfId = filePdfId;
+    }
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime == null ? null : createTime.trim();
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getCreateBy() {
@@ -47,12 +67,12 @@ public class PictureBook {
         this.createBy = createBy == null ? null : createBy.trim();
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime == null ? null : updateTime.trim();
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getUpdateBy() {
@@ -71,44 +91,35 @@ public class PictureBook {
         this.bookName = bookName == null ? null : bookName.trim();
     }
 
-    public Long getGroupId() {
+    public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId == null ? null : groupId.trim();
     }
 
-	public Long getFileImgId() {
-		return fileImgId;
-	}
+    public Long getFileMp3Id() {
+        return fileMp3Id;
+    }
 
-	public void setFileImgId(Long fileImgId) {
-		this.fileImgId = fileImgId;
-	}
+    public void setFileMp3Id(Long fileMp3Id) {
+        this.fileMp3Id = fileMp3Id;
+    }
 
-	public Long getFilePdfId() {
-		return filePdfId;
-	}
+    public String getRemark() {
+        return remark;
+    }
 
-	public void setFilePdfId(Long filePdfId) {
-		this.filePdfId = filePdfId;
-	}
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
 
-	public Long getFileMp3Id() {
-		return fileMp3Id;
-	}
+    public String getGroupName() {
+        return groupName;
+    }
 
-	public void setFileMp3Id(Long fileMp3Id) {
-		this.fileMp3Id = fileMp3Id;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-    
+    public void setGroupName(String groupName) {
+        this.groupName = groupName == null ? null : groupName.trim();
+    }
 }

@@ -1,6 +1,6 @@
 package com.familyRead.model;
 
-public class Group {
+public class Groups {
     private Long id;
 
     private String groupName;
@@ -8,6 +8,8 @@ public class Group {
     private String createTime;
 
     private String careteBy;
+
+    private String remark;
 
     public Long getId() {
         return id;
@@ -40,4 +42,13 @@ public class Group {
     public void setCareteBy(String careteBy) {
         this.careteBy = careteBy == null ? null : careteBy.trim();
     }
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+    
 }

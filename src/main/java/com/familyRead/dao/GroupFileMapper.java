@@ -2,8 +2,16 @@ package com.familyRead.dao;
 
 import com.familyRead.model.GroupFile;
 
-import tk.mybatis.mapper.common.Mapper;
+public interface GroupFileMapper {
+    int deleteByPrimaryKey(Long id);
 
+    int insert(GroupFile record);
 
-public interface GroupFileMapper extends Mapper<GroupFile>{
+    int insertSelective(GroupFile record);
+
+    GroupFile selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(GroupFile record);
+
+    int updateByPrimaryKey(GroupFile record);
 }

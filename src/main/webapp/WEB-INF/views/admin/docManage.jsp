@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td>${index.index+1}</td>
                                             <td><a href="${ctx}/assets/upload/${imgs.fileName }" target="blank">${imgs.fileName }</a></td>
                                             <td>${imgs.createBy }</td>
-                                            <td>${imgs.groupName }</td>
+                                           	<td>${imgs.groupName }</td>
                                             <td>${imgs.bookName }</td>
                                             <td>
                                             	<c:choose>

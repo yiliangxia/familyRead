@@ -33,7 +33,7 @@ public class FileServiceImpl {
 		int flag = -1;
 		FileInfo fi = new FileInfo();
 		fi.setFileName(fileInfo.getFileName());
-		flag = fileInfoMapper.delete(fi);
+		flag = fileInfoMapper.deleteByPrimaryKey(fi.getId());
 		if(flag<0){
 			return -1;
 		}
@@ -41,7 +41,7 @@ public class FileServiceImpl {
 		
 	}
 
-	public FileInfo selectFileInfoById(FileInfo fileInfo) {
-		return fileInfoMapper.selectOne(fileInfo);
+	public FileInfo selectFileInfoByFileId(Long id) {
+		return fileInfoMapper.selectByPrimaryKey(id);
 	}
 }

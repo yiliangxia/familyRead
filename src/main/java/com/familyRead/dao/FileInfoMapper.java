@@ -2,17 +2,27 @@ package com.familyRead.dao;
 
 import java.util.List;
 
-import tk.mybatis.mapper.common.Mapper;
-
 import com.familyRead.model.FileInfo;
 import com.familyRead.util.Page;
 
+public interface FileInfoMapper {
+    int deleteByPrimaryKey(Long id);
 
-public interface FileInfoMapper extends Mapper<FileInfo>{
+    int insert(FileInfo record);
 
+    int insertSelective(FileInfo record);
+
+    FileInfo selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(FileInfo record);
+
+    int updateByPrimaryKey(FileInfo record);
+	
 	List<FileInfo> selectFileInfoPage(Page<FileInfo> page);
+	List<FileInfo> selectPdfFileInfoPage(Page<FileInfo> page);
+	List<FileInfo> selectVedioFileInfoPage(Page<FileInfo> page);
 
 	int selectFileInfoCount(Page<FileInfo> page);
 	
-	public int insertFileInfo(FileInfo fileInfo);
+	List<FileInfo> selectFileInfoByParams(FileInfo fileInfo);
 }

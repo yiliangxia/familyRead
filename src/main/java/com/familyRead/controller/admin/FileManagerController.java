@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,8 +23,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.familyRead.dao.FileInfoMapper;
+import com.familyRead.dao.GroupFileMapper;
+import com.familyRead.dao.GroupsMapper;
+import com.familyRead.dao.PictureBookMapper;
 import com.familyRead.model.Customer;
 import com.familyRead.model.FileInfo;
+import com.familyRead.model.Groups;
+import com.familyRead.model.PictureBook;
 import com.familyRead.service.impl.FileServiceImpl;
 import com.familyRead.util.Page;
 import com.google.gson.JsonObject;
@@ -38,6 +45,10 @@ import com.google.gson.JsonObject;
 public class FileManagerController {
 	
 	@Autowired FileServiceImpl fileService;
+	@Autowired GroupsMapper groupsMapper;
+	@Autowired PictureBookMapper pictureBookMapper;
+	@Autowired GroupFileMapper groupFileMapper;
+	@Autowired FileInfoMapper fileInfoMapper;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
@@ -84,7 +95,7 @@ public class FileManagerController {
         	fileInfo.setFileType(3);
         }
         fileInfo.setFileName(name);
-        fileInfo.setCreateTime(new Date().toString());
+        fileInfo.setCreateTime(new Date());
         fileInfo.setCreateBy(customer.getUserName());
         try {
 			fileService.insertSelective(fileInfo);
@@ -115,7 +126,25 @@ public class FileManagerController {
 			}
 		}
 		page.setParameter(fileInfo);
-		page.setResult(fileService.selectFileInfoPage(page));
+		List<FileInfo> listResult = fileInfoMapper.selectFileInfoPage(page);
+		if(!listResult.isEmpty()){
+			for(FileInfo fi : listResult){
+				String groupName = "";
+				String groups = fi.getGroupId();
+				if(groups!=null&&groups.contains(",")){
+					for(String str:groups.split(",")){
+						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
+						groupName+=gs.getGroupName()+",";
+					}
+				}
+				
+				if(groupName.contains(",")){
+					groupName = groupName.substring(0, groupName.length()-1);
+				}
+				fi.setGroupName(groupName);
+			}
+		}
+		page.setResult(listResult);
 		page.setTotalCount(fileService.selectFileInfoCount(page));
 		
 		
@@ -145,7 +174,24 @@ public class FileManagerController {
 			}
 		}
 		page.setParameter(fileInfo);
-		page.setResult(fileService.selectFileInfoPage(page));
+		List<FileInfo> listResult = fileInfoMapper.selectPdfFileInfoPage(page);
+		if(!listResult.isEmpty()){
+			for(FileInfo fi : listResult){
+				String groupName = "";
+				String groups = fi.getGroupId();
+				if(groups!=null&&groups.contains(",")){
+					for(String str:groups.split(",")){
+						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
+						groupName+=gs.getGroupName()+",";
+					}
+				}
+				if(groupName.contains(",")){
+					groupName = groupName.substring(0, groupName.length()-1);
+				}
+				fi.setGroupName(groupName);
+			}
+		}
+		page.setResult(listResult);
 		page.setTotalCount(fileService.selectFileInfoCount(page));
 		
 		
@@ -163,9 +209,7 @@ public class FileManagerController {
 		}
 		page.setPageSize(_pageSize);
 		int _pageNo = 1;
-		if(fileInfo.getFileType()==null||"".equals(fileInfo.getFileType())){
 			fileInfo.setFileType(3);
-		}
 		if (pageNo != null && !"".equals(pageNo)) {
 			try {
 				_pageNo = Integer.parseInt(pageNo);
@@ -174,8 +218,26 @@ public class FileManagerController {
 				logger.info("页码转换失败{}", pageNo);
 			}
 		}
+		
 		page.setParameter(fileInfo);
-		page.setResult(fileService.selectFileInfoPage(page));
+		List<FileInfo> listResult = fileInfoMapper.selectVedioFileInfoPage(page);
+		if(!listResult.isEmpty()){
+			for(FileInfo fi : listResult){
+				String groupName = "";
+				String groups = fi.getGroupId();
+				if(groups!=null&&groups.contains(",")){
+					for(String str:groups.split(",")){
+						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
+						groupName+=gs.getGroupName()+",";
+					}
+				}
+				if(groupName.contains(",")){
+					groupName = groupName.substring(0, groupName.length()-1);
+				}
+				fi.setGroupName(groupName);
+			}
+		}
+		page.setResult(listResult);
 		page.setTotalCount(fileService.selectFileInfoCount(page));
 		
 		
@@ -187,9 +249,44 @@ public class FileManagerController {
 	
 	@RequestMapping(value = "/toBookManage")
 	public String toBookManage(Model model,FileInfo fileInfo) {
-		fileInfo = fileService.selectFileInfoById(fileInfo);
+		if(fileInfo!=null){
+			fileInfo = fileService.selectFileInfoByFileId(fileInfo.getId());
+		}
+		List<Groups> groupList = groupsMapper.selectAll();
+		FileInfo param = new FileInfo(1);
+		List<FileInfo> imgList = fileInfoMapper.selectFileInfoByParams(param);
+		param.setFileType(2);
+		List<FileInfo> docList = fileInfoMapper.selectFileInfoByParams(param);
+		param.setFileType(3);
+		List<FileInfo> vedioList = fileInfoMapper.selectFileInfoByParams(param);
+		
+		
 		model.addAttribute("fileInfo", fileInfo);
+		model.addAttribute("groupList", groupList);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("docList", docList);
+		model.addAttribute("vedioList", vedioList);
 		return "admin/bookManage";
+	}
+	
+	
+	@RequestMapping(value = "/saveBook" ,method=RequestMethod.POST)
+	public String saveBook(HttpServletRequest request,Model model,PictureBook pictureBook) {
+			String groups = "";
+			for(String key:request.getParameterMap().keySet()){
+				if(key.startsWith("group")){
+					groups+=String.valueOf(request.getParameter(key))+",";
+				}
+			}
+			if(groups.contains(",")){
+				groups = groups.substring(0, groups.lastIndexOf(","));
+			}
+			pictureBook.setGroupId(groups);
+			int flag = pictureBookMapper.insertSelective(pictureBook);
+			if(flag!=-1){
+				model.addAttribute("status",pictureBook.getBookName()+"创建成功");
+			}
+		return "redirect:/toBookManage";
 	}
 	
 	

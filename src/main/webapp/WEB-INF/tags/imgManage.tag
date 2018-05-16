@@ -25,7 +25,7 @@
 		<c:choose>
 			<c:when test="${page.pageNo > 1}">
 				<li><a
-					href="javascript:loadImgList(${page.prePage})"><<</a></li>
+					href="javascript:loadImgList(${page.prePage},${page.pageSize})"><<</a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="javascript:void(0)"><<</a></li>
@@ -35,18 +35,18 @@
 			<c:choose>
 				<c:when test="${i == current}">
 					<li><a class="active"
-						href="javascript:loadImgList(${i})">${i}</a></li>
+						href="javascript:loadImgList(${i},${page.pageSize})">${i}</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a
-						href="javascript:loadImgList(${i})">${i}</a></li>
+						href="javascript:loadImgList(${i},${page.pageSize})">${i}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		<c:choose>
 			<c:when test="${page.hasNext}">
 				<li><a
-					href="javascript:loadImgList(${page.nextPage})">>></a></li>
+					href="javascript:loadImgList(${page.nextPage},${page.pageSize})">>></a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="javascript:void(0)">>></a></li>

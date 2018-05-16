@@ -8,6 +8,7 @@
 <link href="${ctx}/assets/bootstrap/css/font-awesome.min.css" rel="stylesheet">
 <link href="${ctx}/assets/bootstrap/css/metisMenu.min.css" rel="stylesheet">
 <link href="${ctx}/assets/bootstrap/css/morris.css" rel="stylesheet">
+<link href="${ctx}/assets/bootstrap/css/base.css" rel="stylesheet">
 <link href="${ctx}/assets/css/sb-admin-2.css" rel="stylesheet">
 <link href="${ctx}/assets/css/fileinput.min.css" rel="stylesheet">
 <script src="${ctx}/assets/js/jquery.min.js"></script>

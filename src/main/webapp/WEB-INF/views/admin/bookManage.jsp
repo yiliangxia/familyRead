@@ -23,69 +23,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Navigation -->
 		<%@ include file="../include/nav.jsp"%>
         <div id="page-wrapper">
-        	<div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                           	绘本管理
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>序号</th>
-                                            <th>文件名字</th>
-                                            <th>创建者</th>
-                                            <th>所属组</th>
-                                             <th>所属绘本</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            <c:choose>
-								<c:when test="${empty page.result }">
-										<tr>
-											<td colspan="5">请上传文件进行操作！</td>
-										</tr>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="imgs" items="${page.result }" varStatus="index">
-                                        <tr>
-                                            <td>${index.index+1}</td>
-                                            <td><a href="${ctx}/assets/upload/${imgs.fileName }" target="blank">${imgs.fileName }</a></td>
-                                            <td>${imgs.createBy }</td>
-                                            <td>${imgs.groupName }</td>
-                                            <td>${imgs.bookName }</td>
-                                            <td>
-                                            	<c:choose>
-													<c:when test="${empty user.groupName}">
-														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
-													</c:when>
-													<c:otherwise>
-														绑定绘本
-													</c:otherwise>
-												</c:choose>
-                                            
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-								</c:otherwise>
-							</c:choose>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <div class="Paging">
-						<div class="pag">
-							<tags:imgManage page="${page}" paginationSize="${page.pageSize}" />
-						</div>
-					</div>
-                    <!-- /.panel -->
-                </div>
+        	<div class="ibox-content">
+               <div class="row">
+               		<span>${status}</span>
+                  <form role="form" action="${ctx}/saveBook" method="post">
+                   <div class="col-sm-5"><h3 class="m-t-none m-b">创建绘本</h3>
+                           <div class="form-group"><label class="col-sm-2 control-label">绘本名称</label> <input type="text" name="bookName" placeholder="绘本名称" class="form-control"></div>
+                           <div class="form-group"><label class="col-sm-2 control-label">选择所属组</label>
+                                    <div class="col-sm-8">
+                                    	 <c:forEach  var="group" items="${groupList}" varStatus="index">
+                                       		 <label class="checkbox-inline i-checks"> <input type="checkbox" name="group${index.index}" value="${group.id}">${group.groupName }</label>
+                                        </c:forEach>
+                                     </div>
+                                </div>
+                                <br/>
+                           <div class="form-group">
+	                           <label class="col-sm-2 control-label">绘本描述</label> 
+	                           <input type="text" name="remark" placeholder="绘本描述" class="form-control">
+                           </div>
+                           <c:if test="${fileInfo.fileType==1}">
+                           		<div class="form-group"><label>图片</label> 
+                           			<input type="text" class="form-control" value="${fileInfo.fileName}">
+                           		</div>
+                           		<input type="hidden" name="fileImgId" class="form-control" value="${fileInfo.id}"></div>
+                           </c:if>
+                           <c:if test="${fileInfo.fileType!=1}">
+                           <div class="form-group">
+                           	<label class="col-sm-2 control-label">图片</label>
+                                    <div class="col-sm-6">
+                                    	<select class="form-control m-b" name="fileImgId">
+                                        <c:forEach  var="img" items="${imgList}">
+                                       		 <option value="${img.id}">${img.fileName }</option>
+                                        </c:forEach>
+                                    </select>
+                                    </div>
+                                </div>
+                             </c:if>
+                              <c:if test="${fileInfo.fileType==2}">
+                           		<div class="form-group"><label>文档</label>
+									<input type="text" class="form-control" value="${fileInfo.fileName}">
+								</div>
+                           			<input type="hidden" name="filePdfId" class="form-control" value="${fileInfo.id}"></div>
+                           </c:if>
+                           <c:if test="${fileInfo.fileType!=2}">
+                           <div class="form-group">
+                           		<label class="col-sm-2 control-label">文档</label>
+                                    <div class="col-sm-6">
+                                    <select class="form-control m-b" name="filePdfId">
+                                        <c:forEach  var="doc" items="${docList}">
+                                       		 <option value="${doc.id}">${doc.fileName }</option>
+                                        </c:forEach>
+                                    </select>
+                                    </div>
+                                </div>
+                             </c:if>
+                            <c:if test="${fileInfo.fileType==3}">
+                           		<div class="form-group"><label>音频</label> <input type="text" class="form-control" value="${fileInfo.fileName}"></div>
+                           		<input type="hidden" name="fileMp3Id" class="form-control" value="${fileInfo.id}"></div>
+                           </c:if>
+                           <c:if test="${fileInfo.fileType!=3}">
+                           <label class="col-sm-2 control-label">音频</label>
+                           <div class="form-group">
+                                    <div class="col-sm-6"><select class="form-control m-b" name="fileMp3Id">
+                                        <c:forEach  var="vedio" items="${vedioList}">
+                                       		 <option value="${vedio.id}">${vedio.fileName }</option>
+                                        </c:forEach>
+                                    </select>
+                                    </div>
+                                </div>
+                             </c:if>
+                           <div  class="form-group">
+                               <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
+                           </div>
+                   </div>
+                       </form>
+               </div>
+           </div>
+        
         </div>
         <!-- /#page-wrapper -->
 
@@ -94,44 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </body>
 <script type="text/javascript">
-//加载用户列表页
-function loadDocList(pageNo, name) {
-	if (pageNo == null || pageNo == "") {
-		pageNo = 1;
-	}
-	var pageSize = $("#pageSize").val();
-	$.ajax({
-		type : "post",
-		url : "${ctx}/toDocManage",
-		data : {
-			pageNo : pageNo,
-			pageSize : pageSize
-		},
-		async : false,
-		dataType : "html",
-		success : function(msg) {
-			$("#right").empty();
-			$("#right").append(msg);
-			support();// 设置翻页按钮底部居中
-		}
-	});
-
-}
-
-function support() {
-	var oDiv = $(".supp")[0];
-	var oTab = $("#list").height();
-	var oHeight = $(window).height() - 375;
-	oDiv.style.width = "100%";
-	if (oTab <= oHeight) {
-		oDiv.style.height = oHeight - oTab + 'px';
-	} else {
-		oDiv.style.height = 0;
-	}
-	var oPag = $(".Paging");
-	var aPli = $(".Paging a");
-	oPag.css('width', aPli.length * aPli[0].offsetWidth + 'px');
-}
+	
 </script>
 </html>
 

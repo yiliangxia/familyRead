@@ -68,7 +68,7 @@
                             <a href="javaScript:void(0)"><i class="fa fa-table fa-fw"></i>用户管理</a>
                         </li>
                         <li>
-                            <a href="javaScript:void(0)"><i class="fa fa-edit fa-fw"></i> 创建绘本</a>
+                            <a href="${ctx}/toBookManage"><i class="fa fa-edit fa-fw"></i> 创建绘本</a>
                         </li>
                     </ul>
                 </div>

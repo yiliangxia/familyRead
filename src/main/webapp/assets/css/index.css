@@ -1,0 +1,10 @@
+/*分页*/
+.Paging{width:450px; height: 35px; line-height: 35px; margin: 0 auto; text-align: center;}
+.Paging .pag{height: 35px; line-height: 35px; text-align: center;  width: 450px;}
+.Paging .pag a{display:inline-block; width: 35px; height: 35px; line-height: 35px; border:1px solid #dddddd; border-right: none; text-decoration: none; float: left; font-size: 13px; font-family: arial;}
+.Paging .pag a:hover{background: #453a7d; color:#ffffff;}
+.Paging .pag a.cur{background: #453a7d; color:#ffffff;}
+.Paging .pag a.active{background: #453a7d; color:#ffffff;}
+.Paging .pag a.f{ border-radius:3px 0 0 3px;}
+.Paging .pag a:last-child{border-right:1px solid #dddddd; border-radius:0 3px 3px 0;}
+.Paging .pag .pn{float: left; height: 35px; line-height: 35px; padding: 0 14px; font-size: 14px; border:1px solid #dddddd; border-right: none; }

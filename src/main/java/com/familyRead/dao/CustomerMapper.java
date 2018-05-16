@@ -4,11 +4,18 @@ import java.util.List;
 
 import com.familyRead.model.Customer;
 
-import tk.mybatis.mapper.common.Mapper;
+public interface CustomerMapper {
+    int deleteByPrimaryKey(Long id);
 
+    int insert(Customer record);
 
-public interface CustomerMapper extends Mapper<Customer>{
+    int insertSelective(Customer record);
 
-	List<Customer> selectCustomerByPhone(Customer customer);
-	
+    Customer selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(Customer record);
+
+    int updateByPrimaryKey(Customer record);
+
+    List<Customer> selectCustomerByPhone(Customer customer);
 }

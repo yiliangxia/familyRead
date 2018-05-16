@@ -3,13 +3,175 @@
 <mapper namespace="com.familyRead.dao.PictureBookMapper" >
   <resultMap id="BaseResultMap" type="com.familyRead.model.PictureBook" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="file_id" property="fileId" jdbcType="BIGINT" />
-    <result column="file_context_id" property="fileContextId" jdbcType="BIGINT" />
-    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="file_img_id" property="fileImgId" jdbcType="BIGINT" />
+    <result column="file_pdf_id" property="filePdfId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
-    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="book_name" property="bookName" jdbcType="VARCHAR" />
-    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+    <result column="file_mp3_id" property="fileMp3Id" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, file_img_id, file_pdf_id, create_time, create_by, update_time, update_by, book_name, 
+    group_id, file_mp3_id, remark, group_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from picture_book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from picture_book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.familyRead.model.PictureBook" >
+    insert into picture_book (id, file_img_id, file_pdf_id, 
+      create_time, create_by, update_time, 
+      update_by, book_name, group_id, 
+      file_mp3_id, remark, group_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{fileImgId,jdbcType=BIGINT}, #{filePdfId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, 
+      #{fileMp3Id,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.familyRead.model.PictureBook" >
+    insert into picture_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fileImgId != null" >
+        file_img_id,
+      </if>
+      <if test="filePdfId != null" >
+        file_pdf_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="fileMp3Id != null" >
+        file_mp3_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fileImgId != null" >
+        #{fileImgId,jdbcType=BIGINT},
+      </if>
+      <if test="filePdfId != null" >
+        #{filePdfId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileMp3Id != null" >
+        #{fileMp3Id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.familyRead.model.PictureBook" >
+    update picture_book
+    <set >
+      <if test="fileImgId != null" >
+        file_img_id = #{fileImgId,jdbcType=BIGINT},
+      </if>
+      <if test="filePdfId != null" >
+        file_pdf_id = #{filePdfId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileMp3Id != null" >
+        file_mp3_id = #{fileMp3Id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.familyRead.model.PictureBook" >
+    update picture_book
+    set file_img_id = #{fileImgId,jdbcType=BIGINT},
+      file_pdf_id = #{filePdfId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=VARCHAR},
+      file_mp3_id = #{fileMp3Id,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>
