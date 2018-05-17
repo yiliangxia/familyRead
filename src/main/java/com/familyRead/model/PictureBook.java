@@ -9,11 +9,11 @@ public class PictureBook {
 
     private Long filePdfId;
 
-    private Date createTime;
+    private String createTime;
 
     private String createBy;
 
-    private Date updateTime;
+    private String updateTime;
 
     private String updateBy;
 
@@ -26,6 +26,12 @@ public class PictureBook {
     private String remark;
 
     private String groupName;
+    
+    private String imgName;
+    
+    private String docName;
+    
+    private String vedioName;
 
     public Long getId() {
         return id;
@@ -51,28 +57,12 @@ public class PictureBook {
         this.filePdfId = filePdfId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public String getCreateBy() {
         return createBy;
     }
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy == null ? null : createBy.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUpdateBy() {
@@ -122,4 +112,45 @@ public class PictureBook {
     public void setGroupName(String groupName) {
         this.groupName = groupName == null ? null : groupName.trim();
     }
+
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+	public String getDocName() {
+		return docName;
+	}
+
+	public void setDocName(String docName) {
+		this.docName = docName;
+	}
+
+	public String getVedioName() {
+		return vedioName;
+	}
+
+	public void setVedioName(String vedioName) {
+		this.vedioName = vedioName;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+    
 }

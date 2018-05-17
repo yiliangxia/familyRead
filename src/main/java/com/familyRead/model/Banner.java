@@ -3,6 +3,8 @@ package com.familyRead.model;
 public class Banner {
     private Long id;
 
+    private String bannerType;
+    
     private String imgName;
 
     private String imgUrl;
@@ -49,6 +51,14 @@ public class Banner {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getBannerType() {
+		return bannerType;
+	}
+
+	public void setBannerType(String bannerType) {
+		this.bannerType = bannerType;
 	}
     
     

@@ -25,4 +25,6 @@ public interface FileInfoMapper {
 	int selectFileInfoCount(Page<FileInfo> page);
 	
 	List<FileInfo> selectFileInfoByParams(FileInfo fileInfo);
+
+	int deleteByFileName(FileInfo fileInfo);
 }

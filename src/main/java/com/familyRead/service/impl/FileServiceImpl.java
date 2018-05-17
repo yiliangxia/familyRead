@@ -33,7 +33,7 @@ public class FileServiceImpl {
 		int flag = -1;
 		FileInfo fi = new FileInfo();
 		fi.setFileName(fileInfo.getFileName());
-		flag = fileInfoMapper.deleteByPrimaryKey(fi.getId());
+		flag = fileInfoMapper.deleteByFileName(fileInfo);
 		if(flag<0){
 			return -1;
 		}

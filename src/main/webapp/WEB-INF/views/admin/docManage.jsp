@@ -1,4 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -14,8 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <title>管理后台首页</title>
 	<%@ include file="../include/tag.jsp"%>
-	<script src="${ctx}/assets/js/morris.min.js"></script>
-	<script src="${ctx}/assets/js/morris-data.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -23,69 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Navigation -->
 		<%@ include file="../include/nav.jsp"%>
         <div id="page-wrapper">
-        	<div id="list">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                           	文档管理
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>序号</th>
-                                            <th>文件名字</th>
-                                            <th>创建者</th>
-                                            <th>所属组</th>
-                                             <th>所属绘本</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                            <c:choose>
-								<c:when test="${empty page.result }">
-										<tr>
-											<td colspan="5">请上传文件进行操作！</td>
-										</tr>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="imgs" items="${page.result }" varStatus="index">
-                                        <tr>
-                                            <td>${index.index+1}</td>
-                                            <td><a href="${ctx}/assets/upload/${imgs.fileName }" target="blank">${imgs.fileName }</a></td>
-                                            <td>${imgs.createBy }</td>
-                                           	<td>${imgs.groupName }</td>
-                                            <td>${imgs.bookName }</td>
-                                            <td>
-                                            	<c:choose>
-													<c:when test="${empty user.groupName}">
-														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
-													</c:when>
-													<c:otherwise>
-														已绑绘本
-													</c:otherwise>
-												</c:choose>
-                                            
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-								</c:otherwise>
-							</c:choose>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <div class="Paging">
-						<div class="pag">
-							<tags:imgManage page="${page}" paginationSize="${page.pageSize}" />
-						</div>
-					</div>
-                    <!-- /.panel -->
-                </div>
+        	
         </div>
         <!-- /#page-wrapper -->
 
@@ -102,7 +43,7 @@ function loadDocList(pageNo, name) {
 	var pageSize = $("#pageSize").val();
 	$.ajax({
 		type : "post",
-		url : "${ctx}/toDocManage",
+		url : "${ctx}/toDocList",
 		data : {
 			pageNo : pageNo,
 			pageSize : pageSize
@@ -110,28 +51,17 @@ function loadDocList(pageNo, name) {
 		async : false,
 		dataType : "html",
 		success : function(msg) {
-			$("#right").empty();
-			$("#right").append(msg);
+			$("#page-wrapper").empty();
+			$("#page-wrapper").append(msg);
 			support();// 设置翻页按钮底部居中
 		}
 	});
 
 }
 
-function support() {
-	var oDiv = $(".supp")[0];
-	var oTab = $("#list").height();
-	var oHeight = $(window).height() - 375;
-	oDiv.style.width = "100%";
-	if (oTab <= oHeight) {
-		oDiv.style.height = oHeight - oTab + 'px';
-	} else {
-		oDiv.style.height = 0;
-	}
-	var oPag = $(".Paging");
-	var aPli = $(".Paging a");
-	oPag.css('width', aPli.length * aPli[0].offsetWidth + 'px');
-}
+$(function() {
+	loadDocList(1, "");
+});
 </script>
 </html>
 

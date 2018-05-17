@@ -47,7 +47,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 文件管理<span class="fa arrow"></span></a>
+                            <a href="javaScript:void(0)"><i class="fa fa-bar-chart-o fa-fw"></i> 文件管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="${ctx}/toUpload">上传文件</a>
@@ -65,10 +65,32 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="javaScript:void(0)"><i class="fa fa-table fa-fw"></i>用户管理</a>
+                            <a href="javaScript:void(0)"><i class="fa fa-table fa-fw"></i>系统管理<span class="fa arrow"></span></a>
+	                            <ul class="nav nav-second-level">
+	                                <li>
+	                                    <a href="${ctx}/bannerPage">banner管理</a>
+	                                </li>
+	                                <li>
+	                                    <a href="${ctx}/groupPage">组管理</a>
+	                                </li>
+	                                 <li>
+	                                    <a href="###" >用户管理</a>
+	                                </li>
+	                                <li>
+	                                    <a href="###">权限管理</a>
+	                                </li>
+	                            </ul>
                         </li>
                         <li>
-                            <a href="${ctx}/toBookManage"><i class="fa fa-edit fa-fw"></i> 创建绘本</a>
+                            <a href="javaScript:void(0)"><i class="fa fa-edit fa-fw"></i> 绘本管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+	                                <li>
+	                                    <a href="${ctx}/toBookManage">创建绘本</a>
+	                                </li>
+	                                <li>
+	                                    <a href="${ctx}/bookPage">绘本列表</a>
+	                                </li>
+	                            </ul>
                         </li>
                     </ul>
                 </div>

@@ -3,13 +3,14 @@
 <mapper namespace="com.familyRead.dao.BannerMapper" >
   <resultMap id="BaseResultMap" type="com.familyRead.model.Banner" >
     <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="banner_type" property="bannerType" jdbcType="INTEGER" />
     <result column="img_name" property="imgName" jdbcType="VARCHAR" />
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="file_id" property="fileId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, img_name, img_url, remark, file_id
+    id, img_name, img_url, remark, file_id,banner_type
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -17,15 +18,44 @@
     from banner
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectBannerPage" resultMap="BaseResultMap">
+    select 
+    	b.id, f.file_name img_name, f.file_path img_url, b.remark, f.id file_id,b.banner_type
+    from banner b left join file_info f on f.id=b.file_id 
+    <where>
+  		<if test="parameter.bannerType!=null">
+  			and b.banner_type = #{parameter.bannerType}
+  		</if>
+  		<if test="parameter.imgName!=null">
+  			and f.file_name = #{parameter.imgName}
+  		</if>
+  	</where>
+  		order by b.id desc
+  		LIMIT #{pageSize,jdbcType=DECIMAL} offset
+		#{offset,jdbcType=DECIMAL}
+  </select>
+   <select id="selectBannerCount"  resultType="java.lang.Integer">
+    select 
+    	count(b.id) 
+   from banner b left join file_info f on f.id=b.file_id 
+    <where>
+  		<if test="parameter.bannerType!=null">
+  			and b.banner_type = #{parameter.bannerType}
+  		</if>
+  		<if test="parameter.imgName!=null">
+  			and f.file_name = #{parameter.imgName}
+  		</if>
+  	</where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from banner
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.familyRead.model.Banner" >
     insert into banner (id, img_name, img_url, 
-      remark, file_id)
+      remark, file_id,banner_type)
     values (#{id,jdbcType=BIGINT}, #{imgName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{fileId,jdbcType=BIGINT})
+      #{remark,jdbcType=VARCHAR}, #{fileId,jdbcType=BIGINT},#{bannerType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.familyRead.model.Banner" >
     insert into banner
@@ -45,6 +75,9 @@
       <if test="fileId != null" >
         file_id,
       </if>
+      <if test="bannerType != null" >
+        banner_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -61,6 +94,9 @@
       </if>
       <if test="fileId != null" >
         #{fileId,jdbcType=BIGINT},
+      </if>
+      <if test="bannerType != null" >
+        #{bannerType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,6 +115,9 @@
       <if test="fileId != null" >
         file_id = #{fileId,jdbcType=BIGINT},
       </if>
+      <if test="bannerType != null" >
+        banner_type = #{bannerType,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -87,6 +126,7 @@
     set img_name = #{imgName,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
+      banner_type = #{bannerType,jdbcType=INTEGER},
       file_id = #{fileId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

@@ -3,6 +3,7 @@ package com.familyRead.dao;
 import java.util.List;
 
 import com.familyRead.model.Groups;
+import com.familyRead.util.Page;
 
 public interface GroupsMapper {
     int deleteByPrimaryKey(Long id);
@@ -18,4 +19,8 @@ public interface GroupsMapper {
     int updateByPrimaryKey(Groups record);
     
     List<Groups> selectAll();
+
+	List<Groups> selectGroupPage(Page<Groups> page);
+
+	int selectGroupCount(Page<Groups> page);
 }

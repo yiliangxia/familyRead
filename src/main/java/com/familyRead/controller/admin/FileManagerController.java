@@ -69,7 +69,7 @@ public class FileManagerController {
             HttpServletRequest request) throws IOException {  
 		Customer customer = (Customer) request.getSession().getAttribute("customer");
 		String uploadPath = request.getSession().getServletContext().getRealPath("/")+"assets/upload";
-        // 1、解析文件数据，并存入车检数据库  
+        // 1、解析文件数据，并存入数据库  
         InputStream fileInput =file.getInputStream() ;  
         String name = file.getOriginalFilename();
         File f = new File(uploadPath);
@@ -107,7 +107,11 @@ public class FileManagerController {
     }  
 	
 	@RequestMapping(value = "/toImgManage")
-	public String toImgManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toImgManage(HttpServletResponse response,Model model) {
+		return "admin/imgManage";
+	}
+	@RequestMapping(value = "/imgManageList")
+	public String imgManageList(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){
@@ -151,11 +155,15 @@ public class FileManagerController {
 		
 		logger.debug("-----img管理页-----");
 		model.addAttribute("page", page);
-		return "admin/imgManage";
+		return "admin/imgList";
 	}
 	
 	@RequestMapping(value = "/toDocManage")
-	public String toDocManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toDocManage(HttpServletResponse response,Model model) {
+		return "admin/docManage";
+	}
+	@RequestMapping(value = "/toDocList")
+	public String toDocList(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){
@@ -198,11 +206,15 @@ public class FileManagerController {
 		
 		logger.debug("-----文档管理页-----");
 		model.addAttribute("page", page);
-		return "admin/docManage";
+		return "admin/docList";
 	}
 	
 	@RequestMapping(value = "/toVedioManage")
-	public String toVedioManage(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
+	public String toVedioManage(HttpServletResponse response,Model model) {
+		return "admin/vedioManage";
+	}
+	@RequestMapping(value = "/vedioList")
+	public String vedioList(HttpServletResponse response,Model model,FileInfo fileInfo,String pageNo,String pageSize) {
 		Page<FileInfo> page = new Page<FileInfo>();
 		Integer _pageSize = 10;
 		if(!StringUtils.isBlank(pageSize)){
@@ -210,7 +222,7 @@ public class FileManagerController {
 		}
 		page.setPageSize(_pageSize);
 		int _pageNo = 1;
-			fileInfo.setFileType(3);
+		fileInfo.setFileType(3);
 		if (pageNo != null && !"".equals(pageNo)) {
 			try {
 				_pageNo = Integer.parseInt(pageNo);
@@ -244,7 +256,7 @@ public class FileManagerController {
 		
 		logger.debug("-----音频管理页-----");
 		model.addAttribute("page", page);
-		return "admin/vedioManage";
+		return "admin/vedioList";
 	}
 	
 	
@@ -270,7 +282,58 @@ public class FileManagerController {
 		return "admin/bookManage";
 	}
 	
+	@RequestMapping(value = "/bookPage")
+	public String bookPage(Model model,PictureBook pictureBook) {
+		
+		return "admin/bookPage";
+	}
 	
+	@RequestMapping(value = "/bookList")
+	public String bookList(Model model,PictureBook pictureBook,String pageNo,String pageSize) {
+		Page<PictureBook> page = new Page<PictureBook>();
+		Integer _pageSize = 10;
+		if(!StringUtils.isBlank(pageSize)){
+			_pageSize=Integer.parseInt(pageSize);
+		}
+		page.setPageSize(_pageSize);
+		int _pageNo = 1;
+		if (pageNo != null && !"".equals(pageNo)) {
+			try {
+				_pageNo = Integer.parseInt(pageNo);
+				page.setPageNo(_pageNo);
+			} catch (Exception e) {
+				logger.info("页码转换失败{}", pageNo);
+			}
+		}
+		page.setParameter(pictureBook);
+		List<PictureBook> listResult = pictureBookMapper.selectBookByPage(page);
+		if(!listResult.isEmpty()){
+			for(PictureBook pb:listResult){
+				String groupsId = pb.getGroupId();
+				String groupName = "";
+				
+				if(groupsId!=null&&groupsId.contains(",")){
+					for(String str:groupsId.split(",")){
+						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
+						groupName+=gs.getGroupName()+",";
+					}
+				}
+				if(groupName.contains(",")){
+					groupName = groupName.substring(0, groupName.length()-1);
+				}
+				pb.setGroupName(groupName);
+			}
+		}
+		page.setResult(listResult);
+		page.setTotalCount(pictureBookMapper.selectBookCount(page));
+		
+		logger.debug("-----音频管理页-----");
+		model.addAttribute("page", page);
+		return "admin/bookList";
+	}
+	
+	
+	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/saveBook" ,method=RequestMethod.POST)
 	public String saveBook(HttpServletRequest request,Model model,PictureBook pictureBook) {
 			String groups = "";
@@ -283,6 +346,7 @@ public class FileManagerController {
 				groups = groups.substring(0, groups.lastIndexOf(","));
 			}
 			pictureBook.setGroupId(groups);
+			pictureBook.setCreateTime(new Date().toLocaleString());
 			int flag = pictureBookMapper.insertSelective(pictureBook);
 			if(flag!=-1){
 				model.addAttribute("status",pictureBook.getBookName()+"创建成功");

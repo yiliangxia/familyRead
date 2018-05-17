@@ -1,6 +1,9 @@
 package com.familyRead.dao;
 
+import java.util.List;
+
 import com.familyRead.model.PictureBook;
+import com.familyRead.util.Page;
 
 public interface PictureBookMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +17,8 @@ public interface PictureBookMapper {
     int updateByPrimaryKeySelective(PictureBook record);
 
     int updateByPrimaryKey(PictureBook record);
+    
+    List<PictureBook> selectBookByPage(Page<PictureBook> page);
+    
+    int selectBookCount(Page<PictureBook> page);
 }

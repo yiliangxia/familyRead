@@ -14,6 +14,9 @@
     <result column="file_mp3_id" property="fileMp3Id" jdbcType="BIGINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="imgName" property="imgName" jdbcType="VARCHAR" />
+    <result column="docName" property="docName" jdbcType="VARCHAR" />
+    <result column="vedioName" property="vedioName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, file_img_id, file_pdf_id, create_time, create_by, update_time, update_by, book_name, 
@@ -174,4 +177,27 @@
       group_name = #{groupName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectBookByPage" resultMap="BaseResultMap">
+  	SELECT p.id, p.file_img_id, p.file_pdf_id, p.create_time, p.create_by, p.update_time, p.update_by, p.book_name, 
+    p.group_id, p.file_mp3_id, p.remark,(select file_name from file_info where p.file_img_id=id) imgName,
+    (select file_name from file_info where p.file_pdf_id=id) docName,(select file_name from file_info where p.file_mp3_id=id) vedioName
+     FROM picture_book p
+     <where>
+  		<if test="parameter.bookName!=null">
+  			and p.book_name = #{parameter.bookName}
+  		</if>
+  	</where>
+  	order by p.create_time desc
+  		LIMIT #{pageSize,jdbcType=DECIMAL} offset
+		#{offset,jdbcType=DECIMAL}
+  </select>
+  <select id="selectBookCount" resultType="java.lang.Integer">
+  	SELECT count(p.id)
+     FROM picture_book p
+     <where>
+  		<if test="parameter.bookName!=null">
+  			and p.book_name = #{parameter.bookName}
+  		</if>
+  	</where>
+  </select>
 </mapper>

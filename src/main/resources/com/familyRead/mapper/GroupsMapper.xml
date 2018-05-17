@@ -95,4 +95,27 @@
     <include refid="Base_Column_List" />
     from groups
   </select>
+  <select id="selectGroupPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groups
+    <where>
+  		<if test="parameter.groupName!=null">
+  			and group_name = #{parameter.groupName}
+  		</if>
+  	</where>
+  		order by create_time desc
+  		LIMIT #{pageSize,jdbcType=DECIMAL} offset
+		#{offset,jdbcType=DECIMAL}
+  </select>
+  <select id="selectGroupCount" resultType="java.lang.Integer">
+    select 
+    	count(id)
+    from groups
+    <where>
+  		<if test="parameter.groupName!=null">
+  			and group_name = #{parameter.groupName}
+  		</if>
+  	</where>
+  </select>
 </mapper>
