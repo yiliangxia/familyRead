@@ -142,7 +142,10 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
-				
+				if(!groups.contains(",")){
+					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
+					groupName = gs.getGroupName();
+				}
 				if(groupName.contains(",")){
 					groupName = groupName.substring(0, groupName.length()-1);
 				}
@@ -194,6 +197,10 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
+				if(!groups.contains(",")){
+					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
+					groupName = gs.getGroupName();
+				}
 				if(groupName.contains(",")){
 					groupName = groupName.substring(0, groupName.length()-1);
 				}
@@ -243,6 +250,10 @@ public class FileManagerController {
 						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
 						groupName+=gs.getGroupName()+",";
 					}
+				}
+				if(!groups.contains(",")){
+					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
+					groupName = gs.getGroupName();
 				}
 				if(groupName.contains(",")){
 					groupName = groupName.substring(0, groupName.length()-1);
@@ -317,6 +328,10 @@ public class FileManagerController {
 						Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(str));
 						groupName+=gs.getGroupName()+",";
 					}
+				}
+				if(!groupsId.contains(",")){
+					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groupsId));
+					groupName = gs.getGroupName();
 				}
 				if(groupName.contains(",")){
 					groupName = groupName.substring(0, groupName.length()-1);
