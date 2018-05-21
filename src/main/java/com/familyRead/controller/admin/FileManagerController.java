@@ -142,7 +142,7 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
-				if(!groups.contains(",")){
+				if(groups!=null&&!groups.contains(",")){
 					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
 					groupName = gs.getGroupName();
 				}
@@ -197,7 +197,7 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
-				if(!groups.contains(",")){
+				if(groups!=null&&!groups.contains(",")){
 					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
 					groupName = gs.getGroupName();
 				}
@@ -251,7 +251,7 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
-				if(!groups.contains(",")){
+				if(groups!=null&&!groups.contains(",")){
 					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groups));
 					groupName = gs.getGroupName();
 				}
@@ -329,7 +329,7 @@ public class FileManagerController {
 						groupName+=gs.getGroupName()+",";
 					}
 				}
-				if(!groupsId.contains(",")){
+				if(groupsId!=null&&!groupsId.contains(",")){
 					Groups gs = groupsMapper.selectByPrimaryKey(Long.valueOf(groupsId));
 					groupName = gs.getGroupName();
 				}
@@ -370,5 +370,22 @@ public class FileManagerController {
 	}
 	
 	
+	@RequestMapping(value = "/deleteFile")
+	@ResponseBody
+	public String saveGroup(HttpServletRequest request,HttpServletResponse response,Model model,FileInfo fileInfo) {
+		String resultStr = "删除失败";
+		int flag = -1;
+			flag = fileInfoMapper.deleteByPrimaryKey(fileInfo.getId());
+		if(flag!=-1){
+			String uploadPath = request.getSession().getServletContext().getRealPath("/")+"assets/upload";
+			String filePath = uploadPath+File.separator+fileInfo.getFileName();
+	        File ff = new File(filePath);
+	        if(ff.exists()){
+	        	ff.delete();
+	        }
+			resultStr = "success";
+		}
+		return resultStr;
+	}
 
 }

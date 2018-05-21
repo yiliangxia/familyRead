@@ -19,6 +19,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <title>管理后台首页</title>
 	<%@ include file="../include/tag.jsp"%>
+	<style type="text/css">
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	    font-size: 14px;
+	    line-height: 1.42857143;
+	    color: #333;
+	</style>
 </head>
 <body>
 	<input id="ctx" type="hidden" value="${ctx}"/>
@@ -62,9 +68,32 @@ function loadImgList(pageNo, pageSize) {
 	});
 
 }
+
+function deleteFile(fileId,fileName,pageNo){
+	var fileInfo = new FileInfo();
+	fileInfo.id = fileId;
+	fileInfo.fileName=fileName;
+	$.ajax({
+		type : "post",
+		url : $("#ctx").val() + "/deleteFile",
+		data : fileInfo,
+		dataType : "text",
+		success : function(text) {
+			if (text == "success") {
+				alert("删除成功");
+				loadImgList(pageNo, "");
+			} else {
+				alert(text);
+			}
+		}
+	});
+}
 $(function() {
 	loadImgList(1, "");
 });
+
+var FileInfo = function() {
+}
 </script>
 </html>
 

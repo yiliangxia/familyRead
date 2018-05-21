@@ -21,4 +21,8 @@ public interface BannerMapper {
 	List<Banner> selectBannerPage(Page<Banner> page);
 
 	int selectBannerCount(Page<Banner> page);
+
+	List<Banner> selectNewsByBannerType(Integer bannerType);
+
+	List<Banner> selectBannerByBannerType(Integer bannerType);
 }

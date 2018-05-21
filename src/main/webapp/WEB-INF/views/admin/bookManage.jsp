@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                              </c:if>
                            <div  class="form-group">
-                               <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
+                               <button class="btn btn-block btn-primary" type="submit"><strong>提交</strong></button>
                            </div>
                    </div>
               </form>

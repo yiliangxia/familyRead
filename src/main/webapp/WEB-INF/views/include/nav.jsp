@@ -83,7 +83,7 @@
                         </li>
                         <li>
                             <a href="javaScript:void(0)"><i class="fa fa-edit fa-fw"></i> 绘本管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
+                            	<ul class="nav nav-second-level">
 	                                <li>
 	                                    <a href="${ctx}/toBookManage">创建绘本</a>
 	                                </li>

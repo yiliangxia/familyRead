@@ -34,7 +34,7 @@ function inputborder() {
 function leftHeight() {
 	var oHeight = $(window).height() - 102;
 	var oLeft = $('#left');
-	var oRight = $('#right');
+	var oRight = $('#page-wrapper');
 	var oRight1 = $('.right_fra');
 	if (oRight.outerHeight() > oHeight) {
 		oLeft.css('height', oRight.outerHeight() + 'px');

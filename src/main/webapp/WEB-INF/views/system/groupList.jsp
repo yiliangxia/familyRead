@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           	组列表 &nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" class="btn btn-primary" href="javaScript:void(0)" data-target="#addModel" onclick="clearModel()">新增</a>
+                           	组列表 &nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" class="btn btn-outline btn-success btn-xs" href="javaScript:void(0)" data-target="#addModel" onclick="clearModel()">新增</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -28,8 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                                        <div class="form-group"><label>组名称</label> <input type="text" name="groupName" id="groupName" placeholder="组名称..." class="form-control"></div>
 	                                                        <div class="form-group"><label>组描述</label> <textarea name="remark" id="remark" placeholder="组描述..." class="form-control"></textarea></div>
 	                                                        <div>
-	                                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="shutDownModal();"><strong>关闭</strong></button>
-	                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="saveGroup('addGroupForm',${page.pageNo})"><strong>保存</strong></button>
+	                                                            <button class="btn btn-primary btn-rounded btn-xs" type="button" onclick="saveGroup('addGroupForm',${page.pageNo})"><strong>保存</strong></button>
+	                                                        <button class="btn btn-danger btn-rounded btn-xs" type="button" onclick="shutDownModal();"><strong>关闭</strong></button>
 	                                                        </div>
 	                                                    </form>
 	                                                </div>
@@ -64,8 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td>${group.remark }</td>
                                             <td>${group.createTime }</td>
                                             <td>
-                                            	<a data-toggle="modal" class="btn btn-primary" href="javaScript:void(0)" onclick="deleteGroup(${group.id},this)">删除</a>
-                                            	<a data-toggle="modal" class="btn btn-primary" href="javaScript:void(0)" onclick="updateGroup(${group.id},this)">修改</a>
+                                            	<a data-toggle="modal" class="btn btn-outline btn-primary btn-xs" href="javaScript:void(0)" onclick="updateGroup(${group.id},this)">修改</a>
+                                            	<a data-toggle="modal" class="btn btn-outline btn-danger btn-xs" href="javaScript:void(0)" onclick="deleteGroup(${group.id},this)">删除</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

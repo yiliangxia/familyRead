@@ -8,9 +8,11 @@
     <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="file_id" property="fileId" jdbcType="BIGINT" />
+    <result column="forward" property="forward" jdbcType="VARCHAR" />
+    <result column="forward_type" property="forwardType" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, img_name, img_url, remark, file_id,banner_type
+    id, img_name, img_url, remark, file_id,banner_type,forward,forward_type
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -20,7 +22,7 @@
   </select>
   <select id="selectBannerPage" resultMap="BaseResultMap">
     select 
-    	b.id, f.file_name img_name, f.file_path img_url, b.remark, f.id file_id,b.banner_type
+    	b.id, f.file_name img_name, f.file_path img_url, b.remark, f.id file_id,b.banner_type,b.forward , b.forward_type 
     from banner b left join file_info f on f.id=b.file_id 
     <where>
   		<if test="parameter.bannerType!=null">
@@ -53,9 +55,10 @@
   </delete>
   <insert id="insert" parameterType="com.familyRead.model.Banner" >
     insert into banner (id, img_name, img_url, 
-      remark, file_id,banner_type)
+      remark, file_id,banner_type,forward,forward_type)
     values (#{id,jdbcType=BIGINT}, #{imgName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{fileId,jdbcType=BIGINT},#{bannerType,jdbcType=INTEGER})
+      #{remark,jdbcType=VARCHAR}, #{fileId,jdbcType=BIGINT},#{bannerType,jdbcType=INTEGER},
+      #{forward,jdbcType=VARCHAR},#{forwardType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.familyRead.model.Banner" >
     insert into banner
@@ -78,6 +81,12 @@
       <if test="bannerType != null" >
         banner_type,
       </if>
+      <if test="forward != null" >
+        forward,
+      </if>
+      <if test="forwardType != null" >
+        forward_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,6 +106,12 @@
       </if>
       <if test="bannerType != null" >
         #{bannerType,jdbcType=INTEGER},
+      </if>
+      <if test="forward != null" >
+        #{forward,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardType != null" >
+        #{forwardType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -118,6 +133,12 @@
       <if test="bannerType != null" >
         banner_type = #{bannerType,jdbcType=INTEGER},
       </if>
+      <if test="forward != null" >
+        forward = #{forward,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardType != null" >
+        forward_type = #{forwardType,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -130,4 +151,16 @@
       file_id = #{fileId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectBannerByBannerType" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from banner
+    where banner_type <![CDATA[ <> ]]> #{bannerType,jdbcType=INTEGER}
+  </select>
+  <select id="selectNewsByBannerType" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from banner
+    where banner_type = #{bannerType,jdbcType=INTEGER}
+  </select>
 </mapper>

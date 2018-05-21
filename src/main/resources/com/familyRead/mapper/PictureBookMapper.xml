@@ -200,4 +200,17 @@
   		</if>
   	</where>
   </select>
+  <select id="selectBooksByGroupId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   SELECT p.id, p.file_img_id, p.file_pdf_id, p.create_time, p.create_by, p.update_time, p.update_by, p.book_name, 
+    p.group_id, p.file_mp3_id, p.remark,(select file_name from file_info where p.file_img_id=id) imgName
+     from picture_book p where #{groupId} in (p.group_id)
+  </select>
+  
+  <select id="selectBookById" resultMap="BaseResultMap">
+  	SELECT p.id, p.file_img_id, p.file_pdf_id, p.create_time, p.create_by, p.update_time, p.update_by, p.book_name, 
+    p.group_id, p.file_mp3_id, p.remark,(select file_name from file_info where p.file_img_id=id) imgName,
+    (select file_name from file_info where p.file_pdf_id=id) docName,(select file_name from file_info where p.file_mp3_id=id) vedioName
+     FROM picture_book p
+      where p.id = #{bookId,jdbcType=BIGINT}
+   </select>
 </mapper>

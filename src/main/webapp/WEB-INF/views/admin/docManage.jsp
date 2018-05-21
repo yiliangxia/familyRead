@@ -62,6 +62,29 @@ function loadDocList(pageNo, name) {
 $(function() {
 	loadDocList(1, "");
 });
+
+
+function deleteFile(fileId,fileName,pageNo){
+	var fileInfo = new FileInfo();
+	fileInfo.id = fileId;
+	fileInfo.fileName=fileName;
+	$.ajax({
+		type : "post",
+		url : $("#ctx").val() + "/deleteFile",
+		data : fileInfo,
+		dataType : "text",
+		success : function(text) {
+			if (text == "success") {
+				alert("删除成功");
+				loadDocList(pageNo, "");
+			} else {
+				alert(text);
+			}
+		}
+	});
+}
+var FileInfo = function() {
+}
 </script>
 </html>
 

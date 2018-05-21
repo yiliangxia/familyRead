@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>序号</th>
@@ -50,8 +50,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                            	<td>${book.groupName }</td>
                                             <td>${book.createTime }</td>
                                             <td>
-												<a data-toggle="modal" class="btn btn-primary" href="javaScript:void()" onclick="deleteBook(${book.id},this)">删除</a>
-                                            	<a data-toggle="modal" class="btn btn-primary" href="javaScript:void()" onclick="updateBook(${book.id},this)">修改</a>                                            
+                                            	<button data-toggle="modal" class="btn btn-outline btn-primary btn-xs" onclick="updateBook(${book.id},this)">修改</button>                                            
+												<button data-toggle="modal" class="btn btn-outline btn-danger btn-xs" onclick="deleteBook(${book.id},this)">删除</button>
                                             </td>
                                         </tr>
                                     </c:forEach>

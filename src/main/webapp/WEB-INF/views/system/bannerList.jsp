@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           	banner列表  &nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" class="btn btn-primary" href="javaScript:void()" data-target="#addModel" onclick="clearModel()">新增</a>
+                           	banner列表  &nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" class="btn btn-outline btn-success btn-xs" href="javaScript:void()" data-target="#addModel" onclick="clearModel()">新增</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -27,23 +27,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                                    	<input type="hidden" value="" name="id" id="id"/>
 	                                                        <div class="form-group"><label>banner图名称</label> <input type="text" name="imgName" id="imgName" placeholder="banner图名称..." class="form-control" readonly="readonly"></div>
 	                                                        <div class="form-group"><label>banner类型</label> 
-	                                                        	<select name="bannerType" id="bannerType" placeholder="类型..." class="form-control">
+	                                                        	<select name="bannerType" id="bannerType" class="form-control">
 	                                                        		<option value="0">首页banner</option>
 	                                                        		<option value="1">菜单banner</option>
 	                                                        		<option value="2">子菜单banner</option>
 	                                                        		<option value="3">脚banner</option>
-	                                                        		<option value="4">其他banner</option>
+	                                                        		<option value="4">news</option>
 	                                                        	</select></div>
-	                                                        	<select name="fileId" id="fileId" placeholder="类型..." class="form-control" onchange="updateImgInfo(this)">
+	                                                        	<select name="fileId" id="fileId" class="form-control" onchange="updateImgInfo(this)">
 	                                                        		<c:forEach var="img" items="${imgList}">
 	                                                        			<option value="${img.id }">${img.fileName }</option>
 	                                                        		</c:forEach>
 	                                                        	</select>
 	                                                        <div class="form-group"><label>路径</label> <input type="text" name="imgUrl" id="imgUrl" placeholder="路径..." class="form-control" readonly="readonly"></div>
+	                                                        <div class="form-group"><label>跳转地址</label> <input type="text" name="forward" id="forward" placeholder="路径..." class="form-control"></div>
+	                                                        <div class="form-group"><label>跳转类型</label> 
+	                                                        	<select name="forwardType" id="forwardType" class="form-control">
+	                                                        		<option value="0">内链</option>
+	                                                        		<option value="1">外链</option>
+	                                                        	</select></div>
 	                                                        <div class="form-group"><label>banner描述</label> <textarea name="remark" id="remark" placeholder="组描述..." class="form-control"></textarea></div>
 	                                                        <div>
-	                                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="shutDownModal();"><strong>关闭</strong></button>
-	                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onclick="savebanner('addBannerForm',${page.pageNo})"><strong>保存</strong></button>
+	                                                            <button class="btn btn-primary btn-rounded btn-xs" type="button" onclick="savebanner('addBannerForm',${page.pageNo})"><strong>保存</strong></button>
+	                                                        	<button class="btn btn-danger btn-rounded btn-xs" type="button" onclick="shutDownModal();"><strong>关闭</strong></button>
 	                                                        </div>
 	                                                    </form>
 	                                                </div>
@@ -86,8 +92,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td>${banner.remark }</td>
                                             <td><a href="${ctx}/assets/upload/${banner.imgName }" target="blank">${ctx}/assets/upload/${banner.imgName }</a></td>
                                             <td>
-                                            	<a data-toggle="modal" class="btn btn-primary" href="javaScript:void()" onclick="deleteBanner(${banner.id},this)">删除</a>
-                                            	<a data-toggle="modal" class="btn btn-primary" href="javaScript:void()" onclick="updateBanner(${banner.id},this)">修改</a>
+                                            	<a data-toggle="modal" class="btn btn-outline btn-primary btn-xs" href="javaScript:void()" onclick="updateBanner(${banner.id},this)">修改</a>
+                                            	<a data-toggle="modal" class="btn btn-outline btn-danger btn-xs" href="javaScript:void()" onclick="deleteBanner(${banner.id},this)">删除</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

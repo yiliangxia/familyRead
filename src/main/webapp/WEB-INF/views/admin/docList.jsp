@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<input id="ctx" type="hidden" value="${ctx}"/>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -17,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>序号</th>
@@ -46,10 +45,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <td>
                                             	<c:choose>
 													<c:when test="${empty imgs.groupName}">
-														<a href="javaScript:void(0)" onclick="manageFile('${imgs.id}')">绑定绘本</a>
+														<button type="button" onclick="manageFile('${imgs.id}')" class="btn btn-outline btn-primary btn-xs">绑定绘本</button>
+														<button type="button" onclick="deleteFile('${imgs.id}','${imgs.fileName }',${page.pageNo})" class="btn btn-outline btn-danger btn-xs">删除</button>
 													</c:when>
 													<c:otherwise>
-														已绑绘本
+														<button type="button" class="btn btn-outline btn-success btn-xs">已绑绘本</button>
 													</c:otherwise>
 												</c:choose>
                                             

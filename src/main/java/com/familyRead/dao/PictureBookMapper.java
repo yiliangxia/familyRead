@@ -21,4 +21,8 @@ public interface PictureBookMapper {
     List<PictureBook> selectBookByPage(Page<PictureBook> page);
     
     int selectBookCount(Page<PictureBook> page);
+
+	List<PictureBook> selectBooksByGroupId(Long groupId);
+
+	PictureBook selectBookById(Long bookId);
 }

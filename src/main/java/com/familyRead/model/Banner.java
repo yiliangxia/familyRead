@@ -12,6 +12,10 @@ public class Banner {
     private String remark;
 
     private Long fileId;
+    
+    private String forward;
+    
+    private Integer forwardType;
 
     public Long getId() {
         return id;
@@ -59,6 +63,22 @@ public class Banner {
 
 	public void setBannerType(String bannerType) {
 		this.bannerType = bannerType;
+	}
+
+	public String getForward() {
+		return forward;
+	}
+
+	public void setForward(String forward) {
+		this.forward = forward;
+	}
+
+	public Integer getForwardType() {
+		return forwardType;
+	}
+
+	public void setForwardType(Integer forwardType) {
+		this.forwardType = forwardType;
 	}
     
     

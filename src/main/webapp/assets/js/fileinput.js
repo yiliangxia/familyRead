@@ -4313,7 +4313,7 @@
         previewFileExtSettings: {},
         buttonLabelClass: 'hidden-xs',
         browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>&nbsp;',
-        browseClass: 'btn btn-primary',
+        browseClass: 'btn btn-outline btn-primary',
         removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
         removeClass: 'btn btn-default btn-secondary',
         cancelIcon: '<i class="glyphicon glyphicon-ban-circle"></i>',
@@ -4374,7 +4374,7 @@
     $.fn.fileinputLocales.en = {
         fileSingle: 'file',
         filePlural: 'files',
-        browseLabel: 'Browse &hellip;',
+        browseLabel: '选择文件 &hellip;',
         removeLabel: '删除',
         removeTitle: '清除选择文件',
         cancelLabel: '关闭',
