@@ -18,8 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <title>绘本管理</title>
 	<%@ include file="../include/tag.jsp"%>
-	<script src="${ctx}/assets/js/morris.min.js"></script>
-	<script src="${ctx}/assets/js/morris-data.js"></script>
 </head>
 <body>
 <input id="ctx" type="hidden" value="${ctx}"/>

@@ -7,9 +7,10 @@
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="carete_by" property="careteBy" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, group_name, create_time, carete_by, remark
+    id, group_name, create_time, carete_by, remark,parent_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.familyRead.model.Groups" >
     insert into groups (id, group_name, create_time, 
-      carete_by, remark)
+      carete_by, remark,parent_id)
     values (#{id,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
-      #{careteBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      #{careteBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},#{parentId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.familyRead.model.Groups" >
     insert into groups
@@ -45,6 +46,9 @@
       <if test="remark != null" >
         remark,
       </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -61,6 +65,9 @@
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -79,6 +86,9 @@
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -87,6 +97,7 @@
     set group_name = #{groupName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
       carete_by = #{careteBy,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -99,6 +110,7 @@
     select 
     <include refid="Base_Column_List" />
     from groups
+    where parent_id is null 
     <where>
   		<if test="parameter.groupName!=null">
   			and group_name = #{parameter.groupName}
@@ -112,9 +124,45 @@
     select 
     	count(id)
     from groups
+    where parent_id is null 
     <where>
   		<if test="parameter.groupName!=null">
   			and group_name = #{parameter.groupName}
+  		</if>
+  	</where>
+  </select>
+  <select id="selectCompilationPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groups
+    	where parent_id is not null 
+    <where>
+  		<if test="parameter.groupName!=null">
+  			and group_name = #{parameter.groupName}
+  		</if>
+  	</where>
+  		order by create_time desc
+  		LIMIT #{pageSize,jdbcType=DECIMAL} offset
+		#{offset,jdbcType=DECIMAL}
+  </select>
+  <select id="selectCompilationCount" resultType="java.lang.Integer">
+    select 
+    	count(id)
+    from groups
+    where parent_id is not null 
+    <where>
+  		<if test="parameter.groupName!=null">
+  			and group_name = #{parameter.groupName}
+  		</if>
+  	</where>
+  </select>
+  <select id="selectByParentId" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from groups
+    <where>
+  		<if test="parentId!=null">
+  			and parent_id = #{parentId,jdbcType=BIGINT}
   		</if>
   	</where>
   </select>

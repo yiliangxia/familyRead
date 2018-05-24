@@ -43,4 +43,11 @@ public class LoginController {
 		return "redirect:index";
 	}
 	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request,Model model,Customer customer) {
+		logger.info(customer.getPhone()+"于"+format1.format(new Date())+"登出");
+		request.getSession().removeAttribute("customer");
+		return "redirect:index";
+	}
+	
 }

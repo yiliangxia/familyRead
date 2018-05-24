@@ -348,7 +348,6 @@ public class FileManagerController {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/saveBook" ,method=RequestMethod.POST)
 	public String saveBook(HttpServletRequest request,Model model,PictureBook pictureBook) {
 			String groups = "";
@@ -361,7 +360,6 @@ public class FileManagerController {
 				groups = groups.substring(0, groups.lastIndexOf(","));
 			}
 			pictureBook.setGroupId(groups);
-			pictureBook.setCreateTime(new Date().toLocaleString());
 			int flag = pictureBookMapper.insertSelective(pictureBook);
 			if(flag!=-1){
 				model.addAttribute("status",pictureBook.getBookName()+"创建成功");

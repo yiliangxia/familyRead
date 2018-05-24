@@ -23,7 +23,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> 个人设置</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+                        <li><a href="${ctx}/logout"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -72,6 +72,9 @@
 	                                </li>
 	                                <li>
 	                                    <a href="${ctx}/groupPage">组管理</a>
+	                                </li>
+	                                <li>
+	                                    <a href="${ctx}/compilationPage">合集管理</a>
 	                                </li>
 	                                 <li>
 	                                    <a href="###" >用户管理</a>

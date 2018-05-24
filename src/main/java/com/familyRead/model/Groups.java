@@ -10,6 +10,10 @@ public class Groups {
     private String careteBy;
 
     private String remark;
+    
+   private Long parentId;
+   
+   private String parentName;
 
     public Long getId() {
         return id;
@@ -49,6 +53,22 @@ public class Groups {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
     
 }

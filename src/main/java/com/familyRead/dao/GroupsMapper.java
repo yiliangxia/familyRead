@@ -21,6 +21,12 @@ public interface GroupsMapper {
     List<Groups> selectAll();
 
 	List<Groups> selectGroupPage(Page<Groups> page);
+	
+	List<Groups> selectByParentId(Long parentId);
 
 	int selectGroupCount(Page<Groups> page);
+	
+	List<Groups> selectCompilationPage(Page<Groups> page);
+	
+	int selectCompilationCount(Page<Groups> page);
 }
