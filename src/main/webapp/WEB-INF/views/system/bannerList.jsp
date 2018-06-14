@@ -66,7 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <th>banner类型</th>
                                             <th>名称</th>
                                             <th>描述</th>
-                                            <th>路径</th>
+                                            <th>跳转路径</th>
+                                            <th>地址</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>
@@ -90,6 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                            	</td>
                                             <td>${banner.imgName }</td>
                                             <td>${banner.remark }</td>
+                                            <td>${banner.forward }</td>
                                             <td><a href="${ctx}/assets/upload/${banner.imgName }" target="blank">${ctx}/assets/upload/${banner.imgName }</a></td>
                                             <td>
                                             	<a data-toggle="modal" class="btn btn-outline btn-primary btn-xs" href="javaScript:void()" onclick="updateBanner(${banner.id},this)">修改</a>
