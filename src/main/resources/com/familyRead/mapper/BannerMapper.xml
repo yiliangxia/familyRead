@@ -147,8 +147,6 @@
     set img_name = #{imgName,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      forward = #{forward,jdbcType=VARCHAR},
-      forward_type = #{forwardType,jdbcType=INTEGER},
       banner_type = #{bannerType,jdbcType=INTEGER},
       file_id = #{fileId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
