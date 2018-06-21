@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                                    <form role="form" id="addGroupForm" action="">
 	                                                    	<input type="hidden" value="" name="id" id="id"/>
 	                                                        <div class="form-group"><label>合集名称</label> <input type="text" name="groupName" id="groupName" placeholder="合集名称..." class="form-control"></div>
-	                                                        <div class="form-group"><label>合集名称</label> 
+	                                                        <div class="form-group"><label>所属组</label> 
 	                                                        	<select class="form-control m-b" id="parentId">
 							                                        <c:forEach  var="compilation" items="${groups}">
 							                                        	<c:if test="${empty compilation.parentId}">

@@ -31,8 +31,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                		<span>${status}</span>
                   <form role="form" action="${ctx}/saveBook" method="post">
                    <div class="col-sm-5"><h3 class="m-t-none m-b">创建绘本</h3>
-                           <div class="form-group"><label class="col-sm-2 control-label">绘本名称</label> <input type="text" name="bookName" placeholder="绘本名称" class="form-control"></div>
-                           <div class="form-group" style="height:30px;"><label class="col-sm-2 control-label">选择所属组</label>
+                           <div class="form-group"><label class="col-sm-4 control-label">绘本名称</label> <input type="text" name="bookName" placeholder="绘本名称" class="form-control"></div>
+                           <div class="form-group" style="height:30px;">
+                           <div class="col-sm-4 control-label">
+	                           <label>选择所属组</label>
+                           </div>
                                     <div class="col-sm-8">
                                     	 <c:forEach  var="group" items="${groupList}" varStatus="index">
                                        		 <label class="checkbox-inline i-checks"> <input type="checkbox" name="group${index.index}" value="${group.id}">${group.groupName }</label>
@@ -41,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                                 <br/>
                            <div class="form-group">
-	                           <label class="col-sm-2 control-label">绘本描述</label> 
+	                           <label class="col-sm-4 control-label">绘本描述</label> 
 	                           <input type="text" name="remark" placeholder="绘本描述" class="form-control">
                            </div>
                            <c:if test="${fileInfo.fileType==1}">
@@ -51,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            </c:if>
                            <c:if test="${fileInfo.fileType!=1}">
                            <div class="form-group">
-                           	<label class="col-sm-2 control-label" style="margin-top:10px;">图片</label>
+                           	<label class="col-sm-4 control-label" style="margin-top:10px;">图片</label>
                                     <div style="margin-top:10px;">
                                     	<select class="form-control m-b" name="fileImgId">
                                         <c:forEach  var="img" items="${imgList}">

@@ -43,10 +43,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <tr>
                                             <td>${index.index+1}</td>
                                             <td>${book.bookName }</td>
-                                            <td>${book.remark }</td>
-                                           	<td>${book.imgName }</td>
-                                           	<td>${book.docName }</td>
-                                           	<td>${book.vedioName }</td>
+                                            <td><c:if test="${fn:length(book.remark) > 8}"><span title="${book.remark}">${fn:substring(book.remark, 0, 8)}...</span></c:if><c:if test="${fn:length(book.remark) <= 8}">${book.remark}</c:if></td>
+                                           	<td><c:if test="${fn:length(book.imgName) > 8}"><span title="${book.imgName}">${fn:substring(book.imgName, 0, 8)}...</span></c:if><c:if test="${fn:length(book.imgName) <= 8}">${book.imgName}</c:if></td>
+                                           	<td><c:if test="${fn:length(book.docName) > 8}"><span title="${book.docName}">${fn:substring(book.docName, 0, 8)}...</span></c:if><c:if test="${fn:length(book.docName) <= 8}">${book.docName}</c:if></td>
+                                           	<td><c:if test="${fn:length(book.vedioName) > 8}"><span title="${book.vedioName}">${fn:substring(book.vedioName, 0, 8)}...</span></c:if><c:if test="${fn:length(book.vedioName) <= 8}">${book.vedioName}</c:if></td>
                                            	<td>${book.groupName }</td>
                                             <td>${book.createTime }</td>
                                             <td>

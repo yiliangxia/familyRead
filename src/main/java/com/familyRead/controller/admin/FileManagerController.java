@@ -276,7 +276,7 @@ public class FileManagerController {
 		if(fileInfo!=null){
 			fileInfo = fileService.selectFileInfoByFileId(fileInfo.getId());
 		}
-		List<Groups> groupList = groupsMapper.selectAll();
+		List<Groups> groupList = groupsMapper.selectAllCompilation();
 		FileInfo param = new FileInfo(1);
 		List<FileInfo> imgList = fileInfoMapper.selectFileInfoByParams(param);
 		param.setFileType(2);

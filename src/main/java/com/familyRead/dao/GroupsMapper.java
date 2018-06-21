@@ -19,6 +19,10 @@ public interface GroupsMapper {
     int updateByPrimaryKey(Groups record);
     
     List<Groups> selectAll();
+    
+    List<Groups> selectAllGroup();
+    
+    List<Groups> selectAllCompilation();
 
 	List<Groups> selectGroupPage(Page<Groups> page);
 	

@@ -166,4 +166,18 @@
   		</if>
   	</where>
   </select>
+  
+  <select id="selectAllGroup" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groups
+    where parent_id is null 
+  </select>
+  
+   <select id="selectAllCompilation" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from groups
+    where parent_id is not null 
+  </select>
 </mapper>
